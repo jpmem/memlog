@@ -11,7 +11,7 @@
 
     <title>
         
-          Hello World - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          SQL Query 結果の出力方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -125,19 +125,47 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+  <h1 id="SQL-Query-結果の出力方法について"><a href="#SQL-Query-結果の出力方法について" class="headerlink" title="SQL Query 結果の出力方法について"></a>SQL Query 結果の出力方法について</h1><p>Configuration Managerにてデータベースの内容を確認するため、SQLクエリの実行をお願いいたします。</p>
+<h2 id="実行するクエリ"><a href="#実行するクエリ" class="headerlink" title="実行するクエリ"></a>実行するクエリ</h2><p>実行いただきたいクエリは都度担当者より案内させていただきます。</p>
+<h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>Configuration Managerのデータベースサーバー</p>
+<h2 id="必要なアカウント"><a href="#必要なアカウント" class="headerlink" title="必要なアカウント"></a>必要なアカウント</h2><p>Configuration Managerのサイト データベース管理者権限が必要になります。</p>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><h3 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h3><ol>
+<li>SQL Server Management Studio を起動します。</li>
+<li>対象のサイト データベースに接続します。<br><img src="./sqlquery/sqlquery01.png" alt=""></li>
+<li>[ツール] - [オプション] をクリックします。<br><img src="./sqlquery/sqlquery02.png" alt=""></li>
+<li>[クエリ結果] - [SQL Server] - [結果をグリッドで表示] を開き、以下のチェック ボックスをオンにします。<ul>
+<li>[結果のコピーまたは保存時に列のヘッダーを含める]<br><img src="./sqlquery/sqlquery03.png" alt=""></li>
+</ul>
+</li>
+</ol>
+<h3 id="手順-1"><a href="#手順-1" class="headerlink" title="手順"></a>手順</h3><p>サイト データベースを構成したサーバーにおいて、手順の実施をお願いします。</p>
+<ol>
+<li>対象サイトが使用している SQL サーバー上で、 Microsoft SQL Server management Studio を開きます。</li>
+<li>SQL Server データベース エンジンに接続し、左ペインより以下のツリーを展開します。</li>
+</ol>
+<p>&lt;サーバー名&gt; (SQL Server &lt;バージョン番号&gt; - &lt;ログイン ユーザー アカウント名&gt;<br>└ データベース<br>  └ CM_&lt;サイト コード&gt;</p>
+<p><img src="./sqlquery/sqlquery04.png" alt=""></p>
+<p>CM_&lt;サイト コード&gt; を右クリックし、[新しいクエリ] を実行します。</p>
+<p><img src="./sqlquery/sqlquery05.png" alt=""></p>
+<ol start="3">
+<li>中央ペインにクエリの編集画面が表示されますので、各クエリを入力し、上部のツール バーにある [実行] ボタンをクリックします。</li>
+</ol>
+<p><img src="./sqlquery/sqlquery06.png" alt=""></p>
+<ol start="4">
+<li>中央下部のペインにクエリの出力結果が表示されます。</li>
+</ol>
+<p><img src="./sqlquery/sqlquery07.png" alt=""></p>
+<ol start="5">
+<li>結果ペインにて、右クリックより、[結果に名前を付けて保存] を選択し、結果を csv 形式で保存します。</li>
+</ol>
+<p><img src="./sqlquery/sqlquery08.png" alt=""></p>
+<ol start="6">
+<li><p>SQL Server Management Studio のウィンドウで × ボタンをクリックして、SQL Server Management Studio を終了します。<br>クエリを保存するかどうかのダイアログが表示されますが、特に保存する必要はございませんので、[No] をクリックしてください。</p>
+</li>
+<li><p>ご採取いただきました、csv をお手数ではございますが、弊社までお送りいただけますようよろしくお願いいたします。</p>
+</li>
+</ol>
+<p>本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
 
 </div>
 
@@ -160,6 +188,12 @@ function sidebar_toggle() {
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/sql/">SQL</a>
+
+      
+    </div>
   
 </div>
   
