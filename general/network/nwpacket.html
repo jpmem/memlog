@@ -133,13 +133,13 @@ function sidebar_toggle() {
 </li>
 <li><p>コマンドプロンプトで以下を実行します。(初回のトレース採取に失敗することがあるため、その問題を回避する手順です。<br>以下のような画面が出れば問題ありません。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace start capture=yes report=disabled traceFile=%TEMP%\NetTrace.etl maxSize=2048 &amp;&amp; netsh trace stop &amp;&amp; del %TEMP%\NetTrace.etl</span><br></pre></td></tr></table></figure>
-<p><img src=".%5Cnwpacket%5Cnwpacket01.png" alt=""></p>
+<p><img src="./nwpacket/nwpacket01.png" alt=""></p>
 </li>
 <li><p>続けて、以下のコマンドを実行します。 [一時フォルダ]の箇所は適宜書き換えください。<br>最大サイズ 1024 MB を上限として、循環形式でトレース ログを収集します。<br>以下のような画面が出力されます。</p>
-</li>
-</ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace start capture=yes maxsize=1024 fileMode=circular overwrite=yes traceFile=&quot;[一時フォルダ]\NetTrace.etl&quot;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ol>
 <h3 id="停止手順"><a href="#停止手順" class="headerlink" title="停止手順"></a>停止手順</h3><ol>
 <li><p>以下のコマンドを実行します。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace stop</span><br></pre></td></tr></table></figure>
