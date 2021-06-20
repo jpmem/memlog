@@ -137,13 +137,12 @@ function sidebar_toggle() {
 </li>
 <li><p>続けて、以下のコマンドを実行します。 [一時フォルダ]の箇所は適宜書き換えください。<br>最大サイズ 1024 MB を上限として、循環形式でトレース ログを収集します。<br>以下のような画面が出力されます。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace start capture=yes maxsize=1024 fileMode=circular overwrite=yes traceFile=&quot;[一時フォルダ]\NetTrace.etl&quot;</span><br></pre></td></tr></table></figure>
-
+<p><img src="./nwpacket/nwpacket02.png" alt=""></p>
 </li>
 </ol>
 <h3 id="停止手順"><a href="#停止手順" class="headerlink" title="停止手順"></a>停止手順</h3><ol>
 <li><p>以下のコマンドを実行します。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace stop</span><br></pre></td></tr></table></figure>
-<p><img src="./nwpacket/nwpacket02.png" alt=""></p>
 </li>
 <li><p>“ファイルの場所” として表示されている NetTrace.etl ファイル、及び同じフォルダ内の NetTrace.cab の <strong>2 つのファイル</strong>を弊社までご提供ください。</p>
 </li>
