@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/memlog/favicon.png" />
+    
+
+    <title>
+        
+          ネットワーク パケットの採取 - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/memlog/css/book.css">
+
+    
+<script src="/memlog/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/memlog/">
+    <span>トップ ページへ</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <h1 id="資料採取手順"><a href="#資料採取手順" class="headerlink" title="資料採取手順"></a>資料採取手順</h1><ul>
+<li><a href="/memlog/categories/general">一般</a></li>
+<li><a href="/memlog/categories/configmgr">MECM</a></li>
+<li><a href="/memlog/categories/wsus">WSUS</a></li>
+<li><a href="/memlog/categories/wua">WUA</a></li>
+<li><a href="/memlog/categories/other">その他</a></li>
+</ul>
+<h1 id="リンク"><a href="#リンク" class="headerlink" title="リンク"></a>リンク</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cssjpn.github.io/">日本マイクロソフト サポート情報</a></li>
+<li><a href="https://jpmem.github.io/blog/">Japan Microsoft Endpoint Manager Support Blog</a></li>
+</ul>
+
+</div>
+
+
+<script src="/memlog/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="ネットワーク-パケットの採取"><a href="#ネットワーク-パケットの採取" class="headerlink" title="ネットワーク パケットの採取"></a>ネットワーク パケットの採取</h1><p>ネットワークトラブルの原因究明のためにパケットキャプチャーを実施いただく際の手順です。<br>Windows 標準のコマンドを使って実施いただけます。追加ソフトウェアのインストールは不要です。</p>
+<h2 id="採取対象"><a href="#採取対象" class="headerlink" title="採取対象"></a>採取対象</h2><p>採取対象については担当者がご案内いたします。</p>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><h3 id="準備"><a href="#準備" class="headerlink" title="準備"></a>準備</h3><p>パケットキャプチャーを格納する一時フォルダを事前に作成するようお願いいたします。(C:\Tempなど)</p>
+<h3 id="開始手順"><a href="#開始手順" class="headerlink" title="開始手順"></a>開始手順</h3><ol>
+<li><p>管理者権限でコマンド プロンプトを開きます。  </p>
+</li>
+<li><p>コマンドプロンプトで以下を実行します。(初回のトレース採取に失敗することがあるため、その問題を回避する手順です。<br>以下のような画面が出れば問題ありません。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace start capture=yes report=disabled traceFile=%TEMP%\NetTrace.etl maxSize=2048 &amp;&amp; netsh trace stop &amp;&amp; del %TEMP%\NetTrace.etl</span><br></pre></td></tr></table></figure>
+<p><img src=".%5Cnwpacket%5Cnwpacket01.png" alt=""></p>
+</li>
+<li><p>続けて、以下のコマンドを実行します。 [一時フォルダ]の箇所は適宜書き換えください。<br>最大サイズ 1024 MB を上限として、循環形式でトレース ログを収集します。<br>以下のような画面が出力されます。</p>
+</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace start capture=yes maxsize=1024 fileMode=circular overwrite=yes traceFile=&quot;[一時フォルダ]\NetTrace.etl&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="停止手順"><a href="#停止手順" class="headerlink" title="停止手順"></a>停止手順</h3><ol>
+<li><p>以下のコマンドを実行します。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh trace stop</span><br></pre></td></tr></table></figure>
+<p><img src=".%5Cnwpacket%5Cnwpacket02.png" alt=""></p>
+</li>
+<li><p>“ファイルの場所” として表示されている NetTrace.etl ファイル、及び同じフォルダ内の NetTrace.cab の <strong>2 つのファイル</strong>を弊社までご提供ください。</p>
+</li>
+</ol>
+<p><img src=".%5Cnwpacket%5Cnwpacket03.png" alt=""></p>
+<p><img src=".%5Cnwpacket%5Cnwpacket04.png" alt=""></p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/general/">General</a> <a class="category-link" href="/memlog/categories/general/network/">Network</a>
+
+      
+    </div>
+  
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/memlog/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/memlog/js/book.js"></script>
