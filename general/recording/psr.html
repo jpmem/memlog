@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Windows ステップ記録ツール (PSR) による情報採取 - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,55 +124,71 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>General</h1>
-  
+          <div class="book-post">
+  <h1 id="Windows-ステップ記録ツール-PSR-による情報採取"><a href="#Windows-ステップ記録ツール-PSR-による情報採取" class="headerlink" title="Windows ステップ記録ツール (PSR) による情報採取"></a>Windows ステップ記録ツール (PSR) による情報採取</h1><p>事象の再現時の画面ショットを断続的に記録する Windows ステップ記録ツール (PSR) の手順となります。</p>
+<h2 id="影響"><a href="#影響" class="headerlink" title="影響"></a>影響</h2><p>特にございません。</p>
+<h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>担当者よりご案内させていただきます。</p>
+<h3 id="ログ開始手順"><a href="#ログ開始手順" class="headerlink" title="ログ開始手順"></a>ログ開始手順</h3><ol>
+<li>[ファイル名を指定して実行] から psr.exe と入力し、上部に表示される psr.exe を右クリックして [管理者として実行] をクリックします。</li>
+</ol>
+<p><img src="./psr/psr01.png" alt=""></p>
+<p>  管理者のユーザー名とパスワードを入力して [はい] を押します。 </p>
+<ol start="2">
+<li>“問題ステップ記録ツール” が起動しましたら、右端の ▼ をクリックし、表示されるメニューから [設定] をクリックします。</li>
+</ol>
+<p><img src="./psr/psr02.png" alt=""></p>
+<ol start="3">
+<li>[保存する最新の取り込み画像数] を 25 から 100 に変更し、OK をクリックします。</li>
+</ol>
+<p><img src="./psr/psr03.png" alt=""></p>
+<ol start="4">
+<li>[記録の開始] をクリックします。</li>
+</ol>
+<p><img src="./psr/psr04.png" alt=""></p>
+<h3 id="ログ停止手順"><a href="#ログ停止手順" class="headerlink" title="ログ停止手順:"></a>ログ停止手順:</h3><ol>
+<li>“問題ステップ記録ツール” で [記録の停止] をクリックします。</li>
+</ol>
+<p><img src="./psr/psr05.png" alt=""></p>
+<ol start="2">
+<li>記録内容 が表示されますので、「保存」ボタンをクリックします。</li>
+</ol>
+<p><img src="./psr/psr06.png" alt=""></p>
+<ol start="3">
+<li><p>ファイルの保存場所、ファイル名を指定し、 [保存] をクリックします。</p>
+</li>
+<li><p>問題ステップ記録ツールのダイアログを閉じます。</p>
+</li>
+<li><p>保存した .zip ファイルを取得します。</p>
+</li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>Recording</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/recording/psr.html">
-                Windows ステップ記録ツール (PSR) による情報採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Network</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/network/nwpacket.html">
-                ネットワーク パケットの採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/general/">General</a> <a class="category-link" href="/memlog/categories/general/recording/">Recording</a>
+
+      
+    </div>
   
 </div>
   
