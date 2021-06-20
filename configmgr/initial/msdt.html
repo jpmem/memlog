@@ -122,15 +122,17 @@ function sidebar_toggle() {
         <div class="book-content">
           <div class="book-post">
   <h1 id="MSDT-ツール-DiagnosticFile-diagcab-実行による情報採取"><a href="#MSDT-ツール-DiagnosticFile-diagcab-実行による情報採取" class="headerlink" title="MSDT ツール (DiagnosticFile.diagcab) 実行による情報採取"></a>MSDT ツール (DiagnosticFile.diagcab) 実行による情報採取</h1><p>Configuration Managerの初期調査ではMSDT(DiagnosticFile.diagcab)による資料採取をお願いさせていただいております。</p>
-<p>MSDT ツール (DiagnosticFile.diagcab) は以下よりダウンロードして頂きますようお願いいたします。</p>
+<p>MSDT ツール (DiagnosticFile.diagcab) は以下よりダウンロードして頂きますようお願いいたします。<br>(WSUS用のツールと同じ名前なのでご注意ください)</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/microsoft-jpcssmem/ConfigMgr/raw/master/DiagnosticFile.zip">https://github.com/microsoft-jpcssmem/ConfigMgr/raw/master/DiagnosticFile.zip</a></p>
+<h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>Configuration Managerのクライアント、サーバーで利用可能です。</p>
 <h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><ol>
 <li>管理者権限をもつユーザーで採取対象にログインします。</li>
 <li>DiagnosticFile.diagcab を実行します。</li>
 <li>「次へ」をクリックします。<br><img src="./msdt/cm-msdt01.png" alt=""></li>
 <li>「（推奨）自動化された診断」をクリックします。<br><img src="./msdt/cm-msdt02.png" alt=""></li>
 <li>しばらく待ちます。<br><img src="./msdt/cm-msdt03.png" alt=""></li>
-<li>「ファイル名を指定して実行」を開きます。<br><img src="./msdt/cm-msdt04.png" alt=""></li>
+<li>「問題を特定できませんでした」と表示されますが、そのまま「閉じる」をクリックします。<br><img src="./msdt/cm-msdt04.png" alt=""></li>
+<li>「ファイル名を指定して実行」を開きます。  </li>
 <li>%localappdata%\ElevatedDiagnostics を実行します。<br><img src="./msdt/cm-msdt05.png" alt=""></li>
 <li>サブ フォルダーに存在する 「latest.cab」 が実行結果となります。<br> (latest.cab のファイルが存在しない場合にはお知らせ下さい。)<br><img src="./msdt/cm-msdt06.png" alt="">  </li>
 <li>latest.cabの名前を[ホスト名]_[日付(YYYYmmdd)]_latest.cab 等適宜変更ください。例えば、2021年6月20日に作成したホスト名”win01”の資料であれば”win01_20210620_latest.cab”。</li>
