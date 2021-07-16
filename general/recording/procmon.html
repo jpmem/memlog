@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Process Monitor ツール (Procmon) による情報採取 - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,48 +124,61 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>Recording</h1>
-  
+          <div class="book-post">
+  <h1 id="Process-Monitor-ツール-Procmon-による情報採取"><a href="#Process-Monitor-ツール-Procmon-による情報採取" class="headerlink" title="Process Monitor ツール (Procmon) による情報採取"></a>Process Monitor ツール (Procmon) による情報採取</h1><p>プロセスがアクセスするファイル、レジストリについての情報を記録する Process Monitor ツールによる情報採取の手順です。<br>以下のサイトより ProcessMonitor.zip をダウンロードして、採取対象端末に展開してください。  </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/downloads/procmon">Process Monitor</a><br>※ ページ上部の “Download Process Monitor” をクリックしてください</p>
+<h2 id="影響"><a href="#影響" class="headerlink" title="影響"></a>影響</h2><hr>
+<p>採取時は一時的に負荷が発生する場合があります。なお、OS 再起動の必要はありません。</p>
+<h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><hr>
+<p>担当者よりご案内させていただきます。</p>
+<h2 id="ログ開始手順"><a href="#ログ開始手順" class="headerlink" title="ログ開始手順"></a>ログ開始手順</h2><hr>
+<ol>
+<li><p>procmon.exe を Administrator 権限を持つユーザー アカウントで起動します。初回起動時のみ EULA への同意を求められます。</p>
+</li>
+<li><p>起動後、自動的にキャプチャが開始されます。一時的に停止する場合は、Ctrl + E をキーを押すか、以下のキャプチャ ボタンをクリックします。<br><img src="./procmon/procmon01.png" alt=""></p>
+</li>
+<li><p>停止したキャプチャをクリアする場合は、Ctrl + X をキーを押すか、以下のクリア ボタンをクリックします。<br><img src="./procmon/procmon02.png" alt=""></p>
+</li>
+<li><p>キャプチャを再開する場合は、Ctrl + E をキーを押すか、キャプチャ ボタンをクリックします。</p>
+</li>
+</ol>
+<h2 id="ログ停止手順"><a href="#ログ停止手順" class="headerlink" title="ログ停止手順"></a>ログ停止手順</h2><hr>
+<ol>
+<li><p>procmon.exe で [Ctrl] + [E] キーを押し、キャプチャを停止します。</p>
+</li>
+<li><p>[Ctrl]+[S] キーを押し、[Save To File] ダイアログ上で [Events to save:] で [All events] を選択し、任意のパスへ保存します。</p>
+</li>
+<li><p>保存された .PML ファイルを弊社宛に送信下さい。</p>
+</li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>Recording</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/recording/procmon.html">
-                Process Monitor ツール (Procmon) による情報採取
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/general/recording/psr.html">
-                Windows ステップ記録ツール (PSR) による情報採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/general/">General</a> <a class="category-link" href="/memlog/categories/general/recording/">Recording</a>
+
+      
+    </div>
   
 </div>
   
