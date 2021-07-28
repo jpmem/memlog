@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/memlog/favicon.png" />
+    
+
+    <title>
+        
+          WSUS データベースのバックアップ方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/memlog/css/book.css">
+
+    
+<script src="/memlog/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/memlog/">
+    <span>トップ ページへ</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <h1 id="資料採取手順"><a href="#資料採取手順" class="headerlink" title="資料採取手順"></a>資料採取手順</h1><ul>
+<li><a href="/memlog/categories/general">一般</a></li>
+<li><a href="/memlog/categories/configmgr">MECM</a></li>
+<li><a href="/memlog/categories/wsus">WSUS</a></li>
+<li><a href="/memlog/categories/wua">WUA</a></li>
+<li><a href="/memlog/categories/other">その他</a></li>
+</ul>
+<h1 id="リンク"><a href="#リンク" class="headerlink" title="リンク"></a>リンク</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cssjpn.github.io/">日本マイクロソフト サポート情報</a></li>
+<li><a href="https://jpmem.github.io/blog/">Japan Microsoft Endpoint Manager Support Blog</a></li>
+</ul>
+
+</div>
+
+
+<script src="/memlog/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="WSUS-データベースのバックアップ方法について"><a href="#WSUS-データベースのバックアップ方法について" class="headerlink" title="WSUS データベースのバックアップ方法について"></a>WSUS データベースのバックアップ方法について</h1><p>WSUS データベース内のレコードを変更する手順をご案内する際に、手順実施前に WSUS データベースのバックアップをご案内することがあります。<br>本手順を実施すると、WSUS データベース (SUSDB) のバックアップが取得できますので、万一問題がおきた場合でも、バックアップよりリストアが可能になります。</p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>事前準備として、データベースに接続する管理ツールである SQL Server Management Studio (SSMS) をインストールします。以下の Web サイトから、SQL Server Management Studio のインストーラーをダウンロードしてください。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15#available-languages">SQL Server Management Studio (SSMS) のダウンロード</a></p>
+<p>日本語版の SSMS をインストールしたい場合、上記 Web サイト内の [日本語] のリンクをクリックすると、日本語版のダウンロードが始まります。ファイル名は、”SSMS-Setup-JPN.exe” です。<br>ダウンロードができたら、SQL Server Management Studio をインストールします。インストール後、再起動が求められることがありますので、その際は OS 再起動を実施してください。</p>
+<h2 id="バックアップ手順"><a href="#バックアップ手順" class="headerlink" title="バックアップ手順"></a>バックアップ手順</h2><ol>
+<li>WSUS サーバーに WSUS Administrators グループに所属するユーザーでログインします。  </li>
+<li>インストールした SQL Server Management Studio を右クリックして [管理者として実行] にて起動します。</li>
+<li>下記のパラメータを入力してデータベースへ [接続] を行います。</li>
+</ol>
+<p>WID の場合</p>
+<blockquote>
+<p>サーバーの種類 : データベース エンジン<br>サーバー名 : \.\pipe\Microsoft##WID\tsql\query<br>認証 : Windows 認証  </p>
+</blockquote>
+<p>SQL Server の場合</p>
+<blockquote>
+<p>サーバーの種類 : データベース エンジン<br>サーバー名 : localhost または、SQL Server のインスタンス名<br>認証 : Windows 認証  </p>
+</blockquote>
+<p>WID か SQL Server か、どちらのデータベースを現在利用しているかにつきましては、WSUS サーバーの以下のレジストリから判断できます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Update Services\Server\Setup]</span><br><span class="line">&quot;SqlServerName&quot;</span><br></pre></td></tr></table></figure>
+
+<p>“SqlServerName” の値が %computername%\MICROSOFT##SSEE もしくは MICROSOFT##WID となっていれば、WID です。それ以外は SQL Server です。</p>
+<ol start="4">
+<li>左ペインより、[データベース] ノードを展開し、[SUSDB] を選択します。</li>
+<li>[SUSDB] を右クリックし、[タスク] - [バックアップ] をクリックします。[データベースのバックアップ] ダイアログ ボックスが表示されます。</li>
+<li>データベースのバックアップ画面で、以下の通り設定します。</li>
+</ol>
+<ul>
+<li>[全般] ページ<blockquote>
+<p>データベース：”SUSDB” であることを確認<br>バックアップの種類：”完全” であることを確認<br>[コピーのみのバックアップ] チェック ボックスをオン<br>バックアップ先：[ディスク] を選択した上で、[追加] をクリックし、バックアップ先を選択します。既存のバックアップ先が不要の場合は、選択して [削除] をクリックしてください。  </p>
+</blockquote>
+</li>
+</ul>
+<p><img src="./backup/backup01.png" alt=""></p>
+<ul>
+<li>[メディア オプション] ページ<blockquote>
+<p>[既存のメディア セットにバックアップする] - [既存のバックアップセットに追加する] を選択<br>信頼性：<br>[完了時にバックアップを検証する] チェック ボックスをオン<br>[メディアに書き込む前にチェックサムを実行する] チェック ボックスをオン<br>[エラーが発生しても続行する] チェック ボックスをオン  </p>
+</blockquote>
+</li>
+</ul>
+<p><img src="./backup/backup02.png" alt=""></p>
+<ul>
+<li>[バックアップ オプション] ページ<blockquote>
+<p>名前：既定の名前がセットされているので任意で変更します<br>説明：任意で説明を記載します<br>バックアップ セットの有効期限：変更不要です  </p>
+</blockquote>
+</li>
+</ul>
+<p><img src="./backup/backup03.png" alt=""></p>
+<ol start="7">
+<li>[OK] ボタンをクリックし、バックアップを開始します。左ペインの「進行状況」ページより、進捗が確認できます。中止したい場合は [今すぐアクションを停止] をクリックすることで、バックアップを中止できます。</li>
+</ol>
+<p><img src="./backup/backup04.png" alt=""></p>
+<ol start="8">
+<li>ダイアログで「データベース “SUSDB” のバックアップが正常に完了しました。」 と表示されましたら、バックアップ完了です。</li>
+</ol>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/wsus/">WSUS</a> <a class="category-link" href="/memlog/categories/wsus/backup/">Backup</a>
+
+      
+    </div>
+  
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/memlog/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/memlog/js/book.js"></script>
