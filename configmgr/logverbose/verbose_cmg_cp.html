@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,54 +124,61 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>LogVerbose</h1>
-  
+          <div class="book-post">
+  <h1 id="MECM-クラウド管理ゲートウェイ接続ポイント-ログの詳細化方法について"><a href="#MECM-クラウド管理ゲートウェイ接続ポイント-ログの詳細化方法について" class="headerlink" title="MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について"></a>MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について</h1><h1 id="MECM-管理ポイント-ログの詳細化方法について"><a href="#MECM-管理ポイント-ログの詳細化方法について" class="headerlink" title="MECM 管理ポイント ログの詳細化方法について"></a>MECM 管理ポイント ログの詳細化方法について</h1><p>詳細調査のため、MECM 管理ポイント ログの詳細化を担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
+<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
+<p>なお、本手順において、MECM サービスプロセスの再起動は不要です。</p>
+<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>[MEMCインストールフォルダ]\Logs\SMS_CLOUD_PROXYCONNECTOR.log</p>
+<h2 id="詳細モード有効化手順"><a href="#詳細モード有効化手順" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><ol>
+<li>[ファイル名を指定して実行] より regedit と入力して [OK] ボタンをクリックします。</li>
+<li>レジストリ エディタ画面にて、以下のキーを探します。</li>
+</ol>
+<p>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR]</p>
+<ol start="3">
+<li><p>上記キー配下の VerboseLogging をダブルクリックし、値を「0」から「1」に変更します。</p>
+</li>
+<li><p>上記キー配下の MaxFileSize をダブルクリックし、表記を「10進数」に変更し、値を「2621440」から「5242880」に変更します。</p>
+</li>
+</ol>
+<h2 id="詳細モード有効化手順-1"><a href="#詳細モード有効化手順-1" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><ol>
+<li>[ファイル名を指定して実行] より regedit と入力して [OK] ボタンをクリックします。</li>
+<li>レジストリ エディタ画面にて、以下のキーを探します。</li>
+</ol>
+<p>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR]</p>
+<ol start="3">
+<li><p>上記キー配下の VerboseLogging をダブルクリックし、値を「1」から「0」に変更します。</p>
+</li>
+<li><p>上記キー配下の MaxFileSize をダブルクリックし、表記を「10進数」に変更し、値を「5242880」から「2621440」に変更します。</p>
+</li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>LogVerbose</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_cmg_cp.html">
-                MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_client.html">
-                MECM エージェント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose.html">
-                MECM 管理ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/logverbose/">LogVerbose</a>
+
+      
+    </div>
   
 </div>
   
