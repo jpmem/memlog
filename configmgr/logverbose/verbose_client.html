@@ -127,9 +127,10 @@ function sidebar_toggle() {
           <div class="book-post">
   <h1 id="MECM-エージェント-ログの詳細化方法について"><a href="#MECM-エージェント-ログの詳細化方法について" class="headerlink" title="MECM エージェント ログの詳細化方法について"></a>MECM エージェント ログの詳細化方法について</h1><p>詳細調査のため、MECM エージェント ログの詳細化を担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
 <h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
-<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>\Program Files\SMS_CCM\Logs フォルダー<br>%windir%\CCM\Logs 配下全てのファイル<br>\SMS_CCM\Logs フォルダー  </p>
-<p>※ インストールのタイミングによって異なります。<br>※ \Program Files は SCCM インストール先に応じて変更されます。</p>
-<h2 id="詳細モード有効化手順"><a href="#詳細モード有効化手順" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><ol>
+<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>%windir%\CCM\Logs 配下全てのファイル  </p>
+<p>※ %windir%\CCM は MECM エージェント インストール先に応じて変更されます。</p>
+<h2 id="詳細モード有効化手順"><a href="#詳細モード有効化手順" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><p>詳細モードを有効にして、ログサイズを既定の 250 KB から 5 MB に変更します。<br>クライアントのディスク空き容量が少ない場合、LogMaxSize の値は任意でご調整ください。</p>
+<ol>
 <li>コントロール パネルより、[管理ツール] - [サービス] を起動し、SMS Agent Host サービスを停止します。</li>
 <li>[ファイル名を指定して実行] より regedit 入力して [OK] ボタンをクリックします。</li>
 <li>レジストリ エディタ画面にて、以下のキーを右クリックし、[新規] - [キー] をクリックします。</li>
@@ -138,10 +139,11 @@ function sidebar_toggle() {
 <ol start="4">
 <li>キー（フォルダー）名を「DebugLogging」と入力して、DebugLogging キーを作成します。</li>
 <li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogLevel」をダブルクリックし、1 の値を 0 に変更します。</li>
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 1000000 (10 進) から 2000000 (10進) に変更します。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 250000 (10 進) から 5000000 (10進) に変更します。</li>
 <li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、MECM エージェント ログの詳細モードが有効になります。</li>
 </ol>
-<h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><ol>
+<h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><p>詳細モードを無効にして、ログサイズを 5 MB から既定の 250 KB に変更します。  </p>
+<ol>
 <li>コントロール パネルより、[管理ツール] - [サービス] を起動し、SMS Agent Host サービスを停止します。</li>
 <li>[ファイル名を指定して実行] より regedit 入力して [OK] ボタンをクリックします。</li>
 <li>レジストリ エディタ画面にて、以下のキーを右クリックし、[削除] をクリックします。</li>
@@ -149,7 +151,7 @@ function sidebar_toggle() {
 <p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CCM\Logging\DebugLogging</p>
 <ol start="4">
 <li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogLevel」をダブルクリックし、0 の値を 1 に変更します。</li>
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 2000000 (10 進) から 1000000 (10進) に変更します。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 5000000 (10 進) から 250000 (10進) に変更します。</li>
 <li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、MECM エージェント ログの詳細モードが無効になります。</li>
 </ol>
 
