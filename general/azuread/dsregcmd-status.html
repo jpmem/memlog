@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Azure AD Join 状態の調査 - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,74 +124,52 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>General</h1>
-  
+          <div class="book-post">
+  <h1 id="Azure-AD-Join-状態の調査"><a href="#Azure-AD-Join-状態の調査" class="headerlink" title="Azure AD Join 状態の調査"></a>Azure AD Join 状態の調査</h1><p>Configuration Manager では共同管理やクラウド管理ゲートウェイにおいて、Azure AD / Hybrid Azure AD に参加している必要がある場合がございます。参加情報を確認させて頂くために取得をお願いさせて頂く情報は以下の通りでございます。</p>
+<h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>Configuration Manager のクライアント</p>
+<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>対象のクライアントを利用するユーザーでログインします。</p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><p>コマンドの出力結果を保存するフォルダを用意しておきます。以下では、C:\Temp フォルダを例としています。</p>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><h3 id="dsregcmd-statusの結果"><a href="#dsregcmd-statusの結果" class="headerlink" title="dsregcmd /statusの結果"></a>dsregcmd /statusの結果</h3><ol>
+<li>コマンドプロンプトを開きます。</li>
+<li>以下のコマンドを実行します。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dsregcmd /status</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>下記のように結果が返却されることを確認します。(スクリーンショットは一部黒塗りしており、途中までの内容となっております)</li>
+</ol>
+<p><img src="./dsregcmd-status/dsregcmd-status01.png" alt=""></p>
+<ol start="4">
+<li>同じコマンドをリダイレクト付で実施し、標準出力結果をファイルに書き出します。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dsregcmd /status &gt; C:\Temp\dsregcmd-status.txt</span><br></pre></td></tr></table></figure>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>AzureAD</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/azuread/dsregcmd-status.html">
-                Azure AD Join 状態の調査
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Recording</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/recording/procmon.html">
-                Process Monitor ツール (Procmon) による情報採取
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/general/recording/psr.html">
-                Windows ステップ記録ツール (PSR) による情報採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Network</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/network/nwpacket.html">
-                ネットワーク パケットの採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/general/">General</a> <a class="category-link" href="/memlog/categories/general/azuread/">AzureAD</a>
+
+      
+    </div>
   
 </div>
   
