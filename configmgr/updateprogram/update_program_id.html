@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          更新プログラム 識別情報の採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,125 +124,53 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>ConfigMgr</h1>
-  
+          <div class="book-post">
+  <h1 id="更新プログラム-識別情報の採取手順について"><a href="#更新プログラム-識別情報の採取手順について" class="headerlink" title="更新プログラム 識別情報の採取手順について"></a>更新プログラム 識別情報の採取手順について</h1><p>調査対象の更新プログラムについて、下記でご案内する識別情報をご提供くださいますようお願いいたします。</p>
+<h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>CM コンソールが動作する端末</p>
+<h2 id="採取頂きたい識別情報"><a href="#採取頂きたい識別情報" class="headerlink" title="採取頂きたい識別情報"></a>採取頂きたい識別情報</h2><ol>
+<li>更新プログラム固有の ID</li>
+<li>更新プログラムの展開の固有の ID</li>
+</ol>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><p>調査対象の更新プログラムについて、CM コンソールから以下の手順で識別情報を採取し、ご提供ください。</p>
+<ol>
+<li>[CM コンソール] - [ソフトウェア ライブラリ] - [概要] - [ソフトウェア更新プログラム] - [すべてのソフトウェア更新プログラム] まで遷移します。  </li>
+<li>表示項目列を右クリックし、「更新プログラム固有の ID」を選択します。<br><img src="./update_program_id/update_program_id01.png" alt=""></li>
+<li>「更新プログラム固有 ID」が表示されている状態で、対象の更新プログラムを選択し、キーボードで「Ctrl + C」を押下します。<br><img src="./update_program_id/update_program_id02.png" alt=""></li>
+<li>メモ帳等を起動し、「Ctrl + V」を押下すると選択した行が貼り付けられます。<br><img src="./update_program_id/update_program_id03.png" alt=""></li>
+<li>対象の更新プログラムを選択し、画面下部で「展開」タブを選択します。  </li>
+<li>表示項目列を右クリックし、「展開の固有ID」を選択します。<br><img src="./update_program_id/update_program_id04.png" alt=""></li>
+<li>「展開の固有 ID」が表示されている状態で、対象の展開を選択し、キーボードで「Ctrl + C」を押下します。<br><img src="./update_program_id/update_program_id05.png" alt=""></li>
+<li>メモ帳等で、「Ctrl + V」を押下すると選択した行が貼り付けられます。<br><img src="./update_program_id/update_program_id06.png" alt=""></li>
+<li>更新プログラムのKB番号に加えて、上記で入手した「更新プログラムの固有のID」、「展開の固有 ID 」の情報を弊社にご提供ください。</li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>Compliance</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/compliance/baseline_id.html">
-                構成基準 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>UpdateProgram</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/updateprogram/update_program_id.html">
-                更新プログラム 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>AppManagement</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/appmanagement/package_id.html">
-                パッケージ 識別情報の採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/appmanagement/application_id.html">
-                アプリケーション 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>LogVerbose</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_cmg_cp.html">
-                MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_client.html">
-                MECM エージェント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose.html">
-                MECM 管理ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>SQL</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/sql/sqlquery.html">
-                SQL Query 結果の出力方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Initial</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/initial/msdt.html">
-                Configuration Manager 初期調査に必要な資料採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/updateprogram/">UpdateProgram</a>
+
+      
+    </div>
   
 </div>
   
