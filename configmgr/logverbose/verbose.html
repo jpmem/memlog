@@ -136,8 +136,8 @@ function sidebar_toggle() {
 <p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CCM\Logging</p>
 <ol start="4">
 <li>キー（フォルダー）名を「DebugLogging」と入力して、DebugLogging キーを作成します。</li>
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogLevel」をダブルクリックし、1 の値を 0 に変更します。</li>
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 1000000 (10 進) から 2000000 (10進) に変更します。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogLevel」をダブルクリックし、1 の値を 0 に変更します。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 1000000 (10 進) から 2000000 (10進) に変更します。</li>
 <li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、MECM 管理ポイント ログの詳細モードが有効になります。</li>
 </ol>
 <h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><ol>
@@ -147,8 +147,8 @@ function sidebar_toggle() {
 </ol>
 <p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CCM\Logging\DebugLogging</p>
 <ol start="4">
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogLevel」をダブルクリックし、0 の値を 1 に変更します。</li>
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 2000000 (10 進) から 1000000 (10進) に変更します。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogLevel」をダブルクリックし、0 の値を 1 に変更します。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 2000000 (10 進) から 1000000 (10進) に変更します。</li>
 <li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、MECM 管理ポイント ログの詳細モードが無効になります。</li>
 </ol>
 
