@@ -126,11 +126,14 @@ function sidebar_toggle() {
           <div class="book-post">
   <h1 id="AD-スキーマ拡張オブジェクトの取得手順について"><a href="#AD-スキーマ拡張オブジェクトの取得手順について" class="headerlink" title="AD スキーマ拡張オブジェクトの取得手順について"></a>AD スキーマ拡張オブジェクトの取得手順について</h1><p>以下にご案内する手順にて、MECM サイト サーバーが AD スキーマ拡張により AD 側に発行している、サイト情報や管理ポイント情報、境界情報の取得をお願い致します。</p>
 <h2 id="実行手順"><a href="#実行手順" class="headerlink" title="実行手順"></a>実行手順</h2><ol>
-<li>以下にご案内するスクリプトをメモ帳等に貼り付けてください。</li>
+<li><p>Active Directory のドメインコントローラーに管理者権限で接続ください。</p>
+</li>
+<li><p>以下にご案内するスクリプトをメモ帳等に貼り付けてください。</p>
+</li>
 </ol>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Initial Setting -------------------------</span></span><br><span class="line"><span class="variable">$domain</span> = <span class="string">&quot;contoso.com&quot;</span></span><br><span class="line"><span class="variable">$output_path</span> = <span class="string">&quot;C:\Temp\SystemManagement.txt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Main Process ----------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$domainNodeTemp</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$node</span> <span class="keyword">in</span> <span class="variable">$domain</span>.Split(<span class="string">&#x27;.&#x27;</span>))&#123;</span><br><span class="line">    <span class="variable">$domainNodeTemp</span> += <span class="string">&quot;DC=<span class="variable">$</span>&#123;node&#125;,&quot;</span>    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$domainNode</span> = <span class="variable">$domainNodeTemp</span>.TrimEnd(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Get-ADObject</span> <span class="literal">-Filter</span> * <span class="literal">-SearchBase</span> <span class="string">&quot;CN=System Management,CN=System,<span class="variable">$</span>&#123;domainNode&#125;&quot;</span> <span class="literal">-Properties</span> * | <span class="built_in">Out-File</span> <span class="literal">-Append</span> <span class="variable">$output_path</span></span><br></pre></td></tr></table></figure>
 
-<ol start="2">
+<ol start="3">
 <li><p>上記 $domainの箇所をお客様のURLに、$output_pathの箇所が出力結果の保存先となりますので適宜変更ください。</p>
 </li>
 <li><p>$output_path に設定した箇所のフォルダを用意ください。</p>
