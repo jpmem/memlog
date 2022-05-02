@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          サイト サーバー ログの SQL 出力の設定手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,131 +123,56 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>ConfigMgr</h1>
-  
+          <div class="book-post">
+  <h1 id="サイト-サーバー-ログの-SQL-出力の設定手順について"><a href="#サイト-サーバー-ログの-SQL-出力の設定手順について" class="headerlink" title="サイト サーバー ログの SQL 出力の設定手順について"></a>サイト サーバー ログの SQL 出力の設定手順について</h1><p>以下手順を実施することで、MECM サイト サーバーのログに 各コンポーネントが SQL 問い合わせを実施した際のログが出力されるようになります。</p>
+<p>下記、その際の手順でございます。</p>
+<h2 id="SQL-出力による影響"><a href="#SQL-出力による影響" class="headerlink" title="SQL 出力による影響"></a>SQL 出力による影響</h2><p>出力されるログサイズが非常に大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
+<h2 id="有効化手順"><a href="#有効化手順" class="headerlink" title="有効化手順"></a>有効化手順</h2><ol>
+<li>管理者権限を持つアカウントで、サイト サーバーにログオンします。</li>
+<li>レジストリ エディタを起動し、以下のレジストリキーへ移動します。</li>
+</ol>
+<p>[HKEY_LOCAL_MACHINE\Software\Microsoft\SMS\Tracing]</p>
+<ol start="3">
+<li>「SqlEnabled」をダブルクリックし、0 の値を 1 に変更します。</li>
+<li>サービス マネージャーより、SMS_EXECUTIVE サービスを停止/開始します。</li>
+</ol>
+<h2 id="無効化手順"><a href="#無効化手順" class="headerlink" title="無効化手順"></a>無効化手順</h2><ol>
+<li>管理者権限を持つアカウントで、サイト サーバーにログオンします。</li>
+<li>レジストリ エディタを起動し、以下のレジストリキーへ移動します。</li>
+</ol>
+<p>[HKEY_LOCAL_MACHINE\Software\Microsoft\SMS\Tracing]</p>
+<ol start="3">
+<li>「SqlEnabled」をダブルクリックし、1 の値を 0 に変更します。</li>
+<li>サービス マネージャーより、SMS_EXECUTIVE サービスを停止/開始します。</li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>SQL</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/sql/sqlenable.html">
-                サイト サーバー ログの SQL 出力の設定手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/sql/sqlquery.html">
-                SQL Query 結果の出力方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Compliance</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/compliance/baseline_id.html">
-                構成基準 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>UpdateProgram</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/updateprogram/update_program_id.html">
-                更新プログラム 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>AppManagement</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/appmanagement/package_id.html">
-                パッケージ 識別情報の採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/appmanagement/application_id.html">
-                アプリケーション 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>LogVerbose</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_cmg_cp.html">
-                MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_client.html">
-                MECM エージェント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose.html">
-                MECM 管理ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Initial</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/initial/msdt.html">
-                Configuration Manager 初期調査に必要な資料採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/sql/">SQL</a>
+
+      
+    </div>
   
 </div>
   
