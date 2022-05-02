@@ -148,7 +148,7 @@ function sidebar_toggle() {
 <li>「SqlEnabled」をダブルクリックし、1 の値を 0 に変更します。</li>
 <li>サービス マネージャーより、SMS_EXECUTIVE サービスを停止/開始します。</li>
 </ol>
-<h3 id="Powershellによる自動化-1"><a href="#Powershellによる自動化-1" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
+<h3 id="Powershellによる自動化-1"><a href="#Powershellによる自動化-1" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;SqlEnabled&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Restart-Service</span> SMS_EXECUTIVE</span><br></pre></td></tr></table></figure>
 </div>
 
