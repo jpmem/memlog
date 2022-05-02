@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          AD スキーマ拡張オブジェクトの取得手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,144 +123,53 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>ConfigMgr</h1>
-  
+          <div class="book-post">
+  <h1 id="AD-スキーマ拡張オブジェクトの取得手順について"><a href="#AD-スキーマ拡張オブジェクトの取得手順について" class="headerlink" title="AD スキーマ拡張オブジェクトの取得手順について"></a>AD スキーマ拡張オブジェクトの取得手順について</h1><p>以下にご案内する手順にて、MECM サイト サーバーが AD スキーマ拡張により AD 側に発行している、サイト情報や管理ポイント情報、境界情報の取得をお願い致します。</p>
+<h2 id="実行手順"><a href="#実行手順" class="headerlink" title="実行手順"></a>実行手順</h2><ol>
+<li>以下にご案内するスクリプトをメモ帳等に貼り付けてください。</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Initial Setting -------------------------</span></span><br><span class="line"><span class="variable">$domain</span> = <span class="string">&quot;contoso.com&quot;</span></span><br><span class="line"><span class="variable">$output_path</span> = <span class="string">&quot;C:\Temp\SystemManagement.txt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Main Process ----------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$domainNodeTemp</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$node</span> <span class="keyword">in</span> <span class="variable">$domain</span>.Split(<span class="string">&#x27;.&#x27;</span>))&#123;</span><br><span class="line">    <span class="variable">$domainNodeTemp</span> += <span class="string">&quot;DC=<span class="variable">$</span>&#123;node&#125;,&quot;</span>    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$domainNode</span> = <span class="variable">$domainNodeTemp</span>.TrimEnd(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Get-ADObject</span> <span class="literal">-Filter</span> * <span class="literal">-SearchBase</span> <span class="string">&quot;CN=System Management,CN=System,<span class="variable">$</span>&#123;domainNode&#125;&quot;</span> <span class="literal">-Properties</span> * | <span class="built_in">Out-File</span> <span class="literal">-Append</span> <span class="variable">$output_path</span></span><br></pre></td></tr></table></figure>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
+<ol start="2">
+<li><p>上記 $domainの箇所をお客様のURLに、$output_pathの箇所が出力結果の保存先となりますので適宜変更ください。</p>
+</li>
+<li><p>$output_path に設定した箇所のフォルダを用意ください。</p>
+</li>
+<li><p>編集したスクリプトを拡張子 ps1 として保存ください。</p>
+</li>
+<li><p>管理者権限でPowershellを開き、上記 ps1 を実行ください。</p>
+</li>
+<li><p>出力されたファイルを弊社にご提供ください。</p>
+</li>
+</ol>
 
-  
-    <div class="category">
-        <h2>AD</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/ad/adschema.html">
-                AD スキーマ拡張オブジェクトの取得手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>SQL</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/sql/sqlenable.html">
-                サイト サーバー ログの SQL 出力の設定手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/sql/sqlquery.html">
-                SQL Query 結果の出力方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Compliance</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/compliance/baseline_id.html">
-                構成基準 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>UpdateProgram</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/updateprogram/update_program_id.html">
-                更新プログラム 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>AppManagement</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/appmanagement/package_id.html">
-                パッケージ 識別情報の採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/appmanagement/application_id.html">
-                アプリケーション 識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>LogVerbose</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_cmg_cp.html">
-                MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_client.html">
-                MECM エージェント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose.html">
-                MECM 管理ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Initial</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/initial/msdt.html">
-                Configuration Manager 初期調査に必要な資料採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/ad/">AD</a>
+
+      
+    </div>
   
 </div>
   
