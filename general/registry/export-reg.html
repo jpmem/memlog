@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          レジストリの採取 - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,87 +123,64 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>General</h1>
-  
+          <div class="book-post">
+  <h1 id="レジストリの採取"><a href="#レジストリの採取" class="headerlink" title="レジストリの採取"></a>レジストリの採取</h1><p>現在のレジストリ内容を出力していただく際の手順です。コマンドでの出力方法とGUIでの出力方法をご案内します。</p>
+<h2 id="出力対象のレジストリ"><a href="#出力対象のレジストリ" class="headerlink" title="出力対象のレジストリ"></a>出力対象のレジストリ</h2><p>出力いただきたいレジストリの内容は都度担当者より案内させて頂きます。</p>
+<h2 id="対象端末"><a href="#対象端末" class="headerlink" title="対象端末"></a>対象端末</h2><p>レジストリを出力いただきたい端末は都度担当者より案内させて頂きます。</p>
+<h2 id="必要なアカウント"><a href="#必要なアカウント" class="headerlink" title="必要なアカウント"></a>必要なアカウント</h2><p>対象端末の管理者権限が必要になります。</p>
+<h2 id="準備"><a href="#準備" class="headerlink" title="準備"></a>準備</h2><p>レジストリ ファイルの出力先の一時フォルダを適宜用意ください。(C:\TEMPなど)</p>
+<h2 id="手順-GUI"><a href="#手順-GUI" class="headerlink" title="手順 (GUI)"></a>手順 (GUI)</h2><ol>
+<li><p>対象端末に管理者権限でログインします。</p>
+</li>
+<li><p>レジストリ エディタを起動します。</p>
+</li>
+<li><p>レジストリを出力させたいエントリまで移動します。以下はHKLM\Software\Microsoft\CCM が対象だった場合です。<br><img src="./export-reg/export-reg01.png" alt=""></p>
+</li>
+<li><p>該当のキーを右クリックし、「エクスポート」を選択します。<br><img src="./export-reg/export-reg02.png" alt=""></p>
+</li>
+<li><p>適宜名前を付けて保存し、保存したファイルを弊社までご提供ください。<br><img src="./export-reg/export-reg03.png" alt=""></p>
+</li>
+</ol>
+<h2 id="手順-CUI"><a href="#手順-CUI" class="headerlink" title="手順 (CUI)"></a>手順 (CUI)</h2><ol>
+<li>対象端末に管理者権限でログインします。</li>
+<li>コマンド プロンプトを管理者権限で開きます。</li>
+<li>カレント ディレクトリを一時フォルダに移動します。</li>
+<li>以下のコマンドを実行してください。  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg export [指定されたレジストリ] [一時フォルダ出力先\ファイル名] /y</span><br></pre></td></tr></table></figure>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
+</li>
+</ol>
+<p><img src="./export-reg/export-reg04.png" alt=""></p>
+<ol start="5">
+<li>適宜名前を付けて保存し、保存したファイルを弊社までご提供ください。</li>
+</ol>
 
-  
-    <div class="category">
-        <h2>Registry</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/registry/export-reg.html">
-                レジストリの採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>AzureAD</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/azuread/dsregcmd-status.html">
-                Azure AD Join 状態の調査
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Recording</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/recording/procmon.html">
-                Process Monitor ツール (Procmon) による情報採取
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/general/recording/psr.html">
-                Windows ステップ記録ツール (PSR) による情報採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-    <div class="category">
-        <h2>Network</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/general/network/nwpacket.html">
-                ネットワーク パケットの採取
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/general/">General</a> <a class="category-link" href="/memlog/categories/general/registry/">Registry</a>
+
+      
+    </div>
   
 </div>
   
