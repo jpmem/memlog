@@ -134,12 +134,19 @@ function sidebar_toggle() {
 </ol>
 <p>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR]</p>
 <ol start="3">
-<li>上記キー配下の VerboseLogging をダブルクリックし、値を「0」から「1」に変更します。</li>
-<li>上記キー配下の DumpAllTraffic  をダブルクリックし、値を「0」から「1」に変更します。</li>
+<li><p>上記キー配下の VerboseLogging をダブルクリックし、値を「0」から「1」に変更します。</p>
+</li>
+<li><p>上記キー配下の DumpAllTraffic  をダブルクリックし、値を「0」から「1」に変更します。</p>
+</li>
+<li><p>レジストリ エディタ画面にて、以下のキーを探します。</p>
+</li>
+</ol>
+<p>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS\Tracing\SMS_CLOUD_PROXYCONNECTOR]</p>
+<ol start="6">
 <li>上記キー配下の MaxFileSize をダブルクリックし、表記を「10進数」に変更し、値を「2621440」から「10485760」に変更します。</li>
 </ol>
 <h3 id="Powershellによる自動化"><a href="#Powershellによる自動化" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;VerboseLogging&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;DumpAllTraffic&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;MaxFileSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;10485760&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;VerboseLogging&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;DumpAllTraffic&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;MaxFileSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;10485760&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br></pre></td></tr></table></figure>
 
 <h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><ol>
 <li>[ファイル名を指定して実行] より regedit と入力して [OK] ボタンをクリックします。</li>
@@ -147,12 +154,17 @@ function sidebar_toggle() {
 </ol>
 <p>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR]</p>
 <ol start="3">
-<li>上記キー配下の VerboseLogging をダブルクリックし、値を「1」から「0」に変更します。</li>
-<li>上記キー配下の DumpAllTraffic  をダブルクリックし、値を「1」から「0」に変更します。</li>
-<li>上記キー配下の MaxFileSize をダブルクリックし、表記を「10進数」に変更し、値を「10485760」から「2621440」に変更します。</li>
+<li><p>上記キー配下の VerboseLogging をダブルクリックし、値を「1」から「0」に変更します。</p>
+</li>
+<li><p>上記キー配下の DumpAllTraffic  をダブルクリックし、値を「1」から「0」に変更します。</p>
+</li>
+<li><p>レジストリ エディタ画面にて、以下のキーを探します。<br>[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS\Tracing\SMS_CLOUD_PROXYCONNECTOR]</p>
+</li>
+<li><p>上記キー配下の MaxFileSize をダブルクリックし、表記を「10進数」に変更し、値を「10485760」から「2621440」に変更します。</p>
+</li>
 </ol>
 <h3 id="Powershellによる自動化-1"><a href="#Powershellによる自動化-1" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;VerboseLogging&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;DumpAllTraffic&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;MaxFileSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;2621440&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;VerboseLogging&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;DumpAllTraffic&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_CLOUD_PROXYCONNECTOR&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;MaxFileSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;2621440&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br></pre></td></tr></table></figure>
 </div>
 
 
