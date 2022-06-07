@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/memlog/favicon.png" />
+    
+
+    <title>
+        
+          Configuration Manager 初期調査に必要な資料採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/memlog/css/book.css">
+
+    
+<script src="/memlog/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/memlog/">
+    <span>トップ ページへ</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <h1 id="資料採取手順"><a href="#資料採取手順" class="headerlink" title="資料採取手順"></a>資料採取手順</h1><ul>
+<li><a href="/memlog/categories/general">一般</a></li>
+<li><a href="/memlog/categories/configmgr">MECM</a></li>
+<li><a href="/memlog/categories/wsus">WSUS</a></li>
+<li><a href="/memlog/categories/wua">WUA</a></li>
+</ul>
+<h1 id="リンク"><a href="#リンク" class="headerlink" title="リンク"></a>リンク</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cssjpn.github.io/">日本マイクロソフト サポート情報</a></li>
+<li><a href="https://jpmem.github.io/blog/">Japan Microsoft Endpoint Manager Support Blog</a></li>
+</ul>
+
+</div>
+
+
+<script src="/memlog/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="CMCollector-スクリプト実行による情報採取"><a href="#CMCollector-スクリプト実行による情報採取" class="headerlink" title="CMCollector スクリプト実行による情報採取"></a>CMCollector スクリプト実行による情報採取</h1><p>Configuration Manager の初期調査では CMCollector スクリプト による資料採取をお願いさせていただいております。</p>
+<p>調査に必要なシステム情報やイベント ログ等の各種情報を、自動で採取可能なスクリプト ファイルによる情報採取をお願いします。 (情報採取に伴うシャットダウンや再起動は行われません)。</p>
+<p>後述の手順で  CMCollector.ps1 を実行し、出力された zip ファイルを弊社までお寄せくださいますようお願いいたします。</p>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><ol>
+<li><p>以下の URL からダウンロードした CMCollector.zip を採取対象の端末にコピーします。なお、本スクリプトは適宜アップグレードを行っておりますので、お手数をおかけしますが常に最新のスクリプトをダウンロードしお使いくださいますようお願いいたします。<br><a target="_blank" rel="noopener" href="https://github.com/microsoft-jpcssmem/ConfigMgr/raw/master/CMCollector.zip">https://github.com/microsoft-jpcssmem/ConfigMgr/raw/master/CMCollector.zip</a></p>
+</li>
+<li><p>スクリプトの格納先として、資料採取対象のコンピューターに C:\script フォルダを作成ください。</p>
+</li>
+<li><p>ダウンロードした CMCollector.zip を展開し、上記の C:\script フォルダーに CMCollector.ps1 と CMUtil.ps1 を以下のように配置します。<br><img src="./cmcollector/cmcollector01.png" alt=""></p>
+</li>
+<li><p>Powershell を管理者として起動します。<br><img src="./cmcollector/cmcollector02.png" alt=""></p>
+</li>
+<li><p>起動した PowerShell コンソールで以下のコマンドを実行し、PowerShell スクリプトを実行できるように、実行ポリシーを変更します。</p>
+</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 変更前の実行ポリシーを確認します。確認したポリシーは後で戻せるようメモしておいてください。</span></span><br><span class="line"><span class="built_in">Get-ExecutionPolicy</span></span><br><span class="line"><span class="comment"># Unrestricted に実行ポリシーを変更します。確認が表示された場合は画面に従ってポリシーを変更してください。</span></span><br><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted</span><br></pre></td></tr></table></figure>
+<p><img src="./cmcollector/cmcollector03.png" alt=""></p>
+<blockquote>
+<p>情報採取が終わった後は、変更前のポリシーに設定を戻していただいてかまいません。</p>
+</blockquote>
+<h2 id="情報採取手順"><a href="#情報採取手順" class="headerlink" title="情報採取手順"></a>情報採取手順</h2><ol>
+<li>管理者として実行にて起動した PowerShell コンソールで以下のコマンドを実行し、情報採取を開始します。</li>
+</ol>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\script</span><br><span class="line">.\CMCollector.ps1 <span class="literal">-Path</span> C:\Script <span class="literal">-Component</span> ConfigMgr</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Hit enter to stop: が表示された PowerShell コンソールで Enter キーを押下します。情報採取を開始します。</li>
+</ol>
+<p><img src="./cmcollector/cmcollector04.png" alt=""></p>
+<p>※以下は取得中画面です。</p>
+<p><img src="./cmcollector/cmcollector05.png" alt=""><br>。</p>
+<ol start="3">
+<li>完了後、PowerShell コンソールに出力されたパスにある zip ファイルを取得します。</li>
+</ol>
+<p><img src="./cmcollector/cmcollector06.png" alt=""></p>
+<p><img src="./cmcollector/cmcollector07.png" alt=""></p>
+<p>出力例）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The collected data is &quot;C:\Script\ConfigMgr_L01-CL04-CLD_20220607_183600.zip&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>上記の zip ファイルを弊社までご提供ください。</li>
+</ol>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/initial/">Initial</a>
+
+      
+    </div>
+  
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/memlog/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/memlog/js/book.js"></script>
