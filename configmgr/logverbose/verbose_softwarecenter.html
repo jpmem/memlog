@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          MECM ソフトウェア センター ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,96 +123,67 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>LogVerbose</h1>
-  
+          <div class="book-post">
+  <h1 id="MECM-ソフトウェア-センター-ログの詳細化方法について"><a href="#MECM-ソフトウェア-センター-ログの詳細化方法について" class="headerlink" title="MECM ソフトウェア センター ログの詳細化方法について"></a>MECM ソフトウェア センター ログの詳細化方法について</h1><p>詳細調査のため、MECM ソフトウェア センター ログの詳細化方法について担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
+<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
+<p>なお、本手順において、各 MECM サービスの再起動や OS 再起動は不要です。</p>
+<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>&lt;MECM クライアント インストール フォルダー&gt;\ClientUX フォルダー配下の SC_ で始まるファイル名のログです。<br>※ &lt;MECM クライアント インストール フォルダー&gt; は、既定で %windir%\CCM です。</p>
+<h2 id="詳細モード有効化手順"><a href="#詳細モード有効化手順" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><ol>
+<li>クライアントがインストールされているコンピュータにて、以下のファイルをテキスト エディタで開きます。<br>※編集前に該当ファイルをバックアップしていただくことをお勧めいたします。</li>
+</ol>
+<p>格納先フォルダー：&lt;MECM クライアント インストール フォルダー&gt;\ClientUX<br>ファイル名：SCClient.exe.config</p>
+<ol start="2">
+<li>下記のとおり変更して保存します。  </li>
+</ol>
+<ul>
+<li>変更前<br><code>&lt;source name=&quot;SCClient&quot; switchValue=&quot;Information&quot;&gt;</code>  </li>
+<li>変更後<br><code>&lt;source name=&quot;SCClient&quot; switchValue=&quot;Verbose&quot;&gt;</code>  </li>
+</ul>
+<ol start="3">
+<li>上記手順実施後、ソフトウェア センター ログの詳細モードが有効になります。</li>
+</ol>
+<h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><ol>
+<li>クライアントがインストールされているコンピュータにて、以下のファイルをテキスト エディタで開きます。<br>※編集前に該当ファイルをバックアップしていただくことをお勧めいたします。</li>
+</ol>
+<p>格納先フォルダー：&lt;MECM クライアント インストール フォルダー&gt;\ClientUX<br>ファイル名：SCClient.exe.config</p>
+<ol start="2">
+<li>下記のとおり変更して保存します。  </li>
+</ol>
+<ul>
+<li>変更前<br><code>&lt;source name=&quot;SCClient&quot; switchValue=&quot;Verbose&quot;&gt;</code>  </li>
+<li>変更後<br><code>&lt;source name=&quot;SCClient&quot; switchValue=&quot;Information&quot;&gt;</code>  </li>
+</ul>
+<ol start="3">
+<li>上記手順実施後、ソフトウェア センター ログの詳細モードが無効になります。</li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>LogVerbose</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_softwarecenter.html">
-                MECM ソフトウェア センター ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_ddm.html">
-                MECM 探索情報マネージャー ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_pkgxfer.html">
-                MECM パッケージ転送マネージャー (PkgXferMgr) ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_cloudattach.html">
-                MECM クラウドアタッチ関連 ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_cloudmgr.html">
-                MECM クラウド接続マネージャー (CloudMgr) ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_statesys.html">
-                MECM 状態メッセージ(StateSys) ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_console.html">
-                MECM 管理コンソール ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_cmg_cp.html">
-                MECM クラウド管理ゲートウェイ接続ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose_client.html">
-                MECM エージェント ログの詳細化方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/logverbose/verbose.html">
-                MECM 管理ポイント ログの詳細化方法について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/logverbose/">LogVerbose</a>
+
+      
+    </div>
   
 </div>
   
