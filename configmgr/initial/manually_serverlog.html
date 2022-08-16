@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/memlog/favicon.png" />
+    
+
+    <title>
+        
+          MECM サーバー資料の採取手順 (手動) - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/memlog/css/book.css">
+
+    
+<script src="/memlog/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/memlog/">
+    <span>トップ ページへ</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <h1 id="資料採取手順"><a href="#資料採取手順" class="headerlink" title="資料採取手順"></a>資料採取手順</h1><ul>
+<li><a href="/memlog/categories/general">一般</a></li>
+<li><a href="/memlog/categories/configmgr">MECM</a></li>
+<li><a href="/memlog/categories/wsus">WSUS</a></li>
+<li><a href="/memlog/categories/wua">WUA</a></li>
+</ul>
+<h1 id="リンク"><a href="#リンク" class="headerlink" title="リンク"></a>リンク</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cssjpn.github.io/">日本マイクロソフト サポート情報</a></li>
+<li><a href="https://jpmem.github.io/blog/">Japan Microsoft Endpoint Manager Support Blog</a></li>
+</ul>
+
+</div>
+
+
+<script src="/memlog/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="MECM-サーバー資料の採取手順-について"><a href="#MECM-サーバー資料の採取手順-について" class="headerlink" title="MECM サーバー資料の採取手順 について"></a>MECM サーバー資料の採取手順 について</h1><p>何らかの理由により、 CMCollector による資料採取が出来ない場合において、 MECM サーバーの資料を採取いただく際の手順を以下にご案内します。<br>なお、お問い合わせの内容によっては、追加の資料採取手順を担当者よりご案内することもございますので、ご了承くださいますようお願い致します。</p>
+<h2 id="採取いただきたい内容"><a href="#採取いただきたい内容" class="headerlink" title="採取いただきたい内容"></a>採取いただきたい内容</h2><ol>
+<li>Configuration Manager サイト サーバー ログ</li>
+<li>Configuration Manager サイト サーバー セットアップ ログ</li>
+<li>Configuration Manager 管理ポイント ログ</li>
+<li>Configuration Manager 配布ポイント ログ</li>
+<li>Configuration Manager ソフトウェア更新ポイント ログ</li>
+<li>Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ</li>
+<li>IIS ログ</li>
+<li>イベント ログ</li>
+<li>システム情報</li>
+<li>レジストリ情報</li>
+<li>グループ ポリシー情報</li>
+</ol>
+<h3 id="Configuration-Manager-サイト-サーバー-ログ"><a href="#Configuration-Manager-サイト-サーバー-ログ" class="headerlink" title="Configuration Manager サイト サーバー ログ"></a>Configuration Manager サイト サーバー ログ</h3><p>サイト サーバーの下記フォルダーを圧縮の上、取得をお願いします。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\Microsoft Configuration Manager\Logs </span><br></pre></td></tr></table></figure>
+<p>※ 複数サイト存在する場合は全てのサイトサーバーで取得お願いします。<br>※ \Program Files は MECM インストール先に応じて変更されます。</p>
+<h3 id="Configuration-Manager-サイト-サーバー-セットアップ-ログ"><a href="#Configuration-Manager-サイト-サーバー-セットアップ-ログ" class="headerlink" title="Configuration Manager サイト サーバー セットアップ ログ"></a>Configuration Manager サイト サーバー セットアップ ログ</h3><p>サイト サーバーのセットアップのログが、システム ドライブ直下に以下のファイル名で存在しますので、取得をお願い致します。</p>
+<ul>
+<li>ConfigMgrPrereq.log</li>
+<li>ConfigMgrSetup.log</li>
+<li>ConfigMgrSetupWizard.log</li>
+</ul>
+<h3 id="Configuration-Manager-管理ポイント-ログ"><a href="#Configuration-Manager-管理ポイント-ログ" class="headerlink" title="Configuration Manager 管理ポイント ログ"></a>Configuration Manager 管理ポイント ログ</h3><p>管理ポイントの役割をもつコンピューターの下記フォルダーを圧縮の上、取得をお願いします。</p>
+<p>以下のいずれかに存在します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\SMS_CCM\Logs </span><br><span class="line">%windir%\CCM\Logs</span><br><span class="line">\SMS_CCM\Logs</span><br></pre></td></tr></table></figure>
+
+<p>※ インストールのタイミングによって異なります。上記フォルダーを全てご確認ください。<br>※ \Program Files は SCCM インストール先に応じて変更されます。</p>
+<p>また、管理ポイントがサイト サーバーと同居していない場合、以下に追加の管理ポイントのログがございますので、<br>圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
+
+<h3 id="Configuration-Manager-リモート配布ポイント-ログ"><a href="#Configuration-Manager-リモート配布ポイント-ログ" class="headerlink" title="Configuration Manager リモート配布ポイント ログ"></a>Configuration Manager リモート配布ポイント ログ</h3><p>配布ポイントがサイト サーバーと同居していない場合、以下にリモート配布ポイントのログがございますので、<br>圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
+
+<h3 id="Configuration-Manager-ソフトウェア更新ポイント-ログ"><a href="#Configuration-Manager-ソフトウェア更新ポイント-ログ" class="headerlink" title="Configuration Manager ソフトウェア更新ポイント ログ"></a>Configuration Manager ソフトウェア更新ポイント ログ</h3><p>ソフトウェアの更新ポイントの役割をもつコンピュータの下記 2 点のフォルダーを圧縮の上、取得をお願いします。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\Update Services\Logfiles</span><br><span class="line">\Program Files\Microsoft Configuration Manager\Logs または \SMS\Logs </span><br></pre></td></tr></table></figure>
+
+<p>※ \Program Files は SCCM インストール先に応じて変更されます。</p>
+<h3 id="Configuration-Manager-クラウド管理ゲートウェイ接続ポイント-ログ"><a href="#Configuration-Manager-クラウド管理ゲートウェイ接続ポイント-ログ" class="headerlink" title="Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ"></a>Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ</h3><p>クラウド管理ゲートウェイ接続ポイントをご利用の場合、かつサイト サーバーと同居していない場合は以下にクラウド管理ゲートウェイ接続ポイントのログが<br>ございますので、圧縮の上ご提供くださいますようお願い致します。サイト サーバーと同居している場合はサイト サーバーと同じ場所にログがございます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
+
+<h3 id="IIS-ログ"><a href="#IIS-ログ" class="headerlink" title="IIS ログ"></a>IIS ログ</h3><p>管理ポイント、配布ポイントの役割をもつコンピュータの以下のファイルを取得してください。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\inetpub\logs\LogFiles\W3SVC1 配下の事象発生日周辺のファイル。</span><br></pre></td></tr></table></figure>
+
+<p>※ あまりにも容量が大きくなるようであれば、事象発生日前後含む 3 日分程度で結構です。</p>
+<h3 id="イベント-ログ"><a href="#イベント-ログ" class="headerlink" title="イベント ログ"></a>イベント ログ</h3><p>イベント ビューアーよりアプリケーション、システム、セキュリティのログを保存してください。<br>イベント ログ形式とテキスト形式での保存をお願いします。</p>
+<h3 id="システム情報"><a href="#システム情報" class="headerlink" title="システム情報"></a>システム情報</h3><p>以下の手順で出力した txt ファイルの取得をお願いします。</p>
+<ol>
+<li>[ファイル名を指定して実行] より、”msinfo32” を開きます。</li>
+<li>[システム情報] 画面が開きますので、メニュー バーより、[ファイル] - [エクスポート] を選択します。</li>
+<li>任意の名前を入力し、txt 形式で保存します。</li>
+</ol>
+<h3 id="レジストリ情報"><a href="#レジストリ情報" class="headerlink" title="レジストリ情報"></a>レジストリ情報</h3><p>以下のレジストリ キーをエクスポートしたファイルの取得をお願いします。</p>
+<ul>
+<li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CCM</li>
+<li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS</li>
+<li>HKEY_LOCAL_MACHINE\SOFTWARE\Policies</li>
+</ul>
+<p>レジストリのエクスポート手順は以下をご参照ください。<br><a href="https://jpmem.github.io/memlog/general/registry/export-reg.html">https://jpmem.github.io/memlog/general/registry/export-reg.html</a></p>
+<h3 id="グループ-ポリシー情報"><a href="#グループ-ポリシー情報" class="headerlink" title="グループ ポリシー情報"></a>グループ ポリシー情報</h3><p>以下の手順で出力した htm ファイルの取得をお願いします。</p>
+<ol>
+<li>管理者権限でコマンド プロンプトを起動し、任意のフォルダーに移動のうえ下記コマンドを実行します。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpresult /H gpresult.htm</span><br></pre></td></tr></table></figure></li>
+<li>移動先フォルダーに出力された gpresult.htm を取得します。</li>
+</ol>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/initial/">Initial</a>
+
+      
+    </div>
+  
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/memlog/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/memlog/js/book.js"></script>
