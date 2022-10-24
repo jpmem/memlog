@@ -125,25 +125,25 @@ function sidebar_toggle() {
         <div class="book-content">
           <div class="book-post">
   <h1 id="WSUS-サーバー-ログの詳細化方法について"><a href="#WSUS-サーバー-ログの詳細化方法について" class="headerlink" title="WSUS サーバー ログの詳細化方法について"></a>WSUS サーバー ログの詳細化方法について</h1><p>詳細調査のため、WSUS サーバー ログの詳細化を担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
-<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
-<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>[WSUSインストールフォルダ]\LogFiles\ 配下のファイル<br>(既定では C:\Program Files\Update Services\LogFiles)</p>
-<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><h3 id="Powershellを使った手順"><a href="#Powershellを使った手順" class="headerlink" title="Powershellを使った手順"></a>Powershellを使った手順</h3><ol>
-<li>WSUSサーバーに管理者アカウントでログインします。</li>
-<li>PowerShellを管理者権限で開きます。</li>
+<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログ　バックアップ取得を推奨いたします。</p>
+<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>[WSUS インストール フォルダー]\LogFiles\ 配下のファイル<br>(既定では C:\Program Files\Update Services\LogFiles)</p>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><h3 id="PowerShell-を使った手順"><a href="#PowerShell-を使った手順" class="headerlink" title="PowerShell を使った手順"></a>PowerShell を使った手順</h3><ol>
+<li>WSUS　サーバーに管理者アカウントでログインします。</li>
+<li>PowerShell　を管理者権限で開きます。</li>
 <li>以下のコマンドレットによりWSUSのログを詳細化します。</li>
 </ol>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">New-ItemProperty</span> <span class="string">&quot;HKLM:\Software\Microsoft\Update Services\Server\Setup&quot;</span> <span class="literal">-name</span> <span class="string">&quot;LogLevel&quot;</span> <span class="literal">-Value</span> <span class="number">5</span> <span class="literal">-propertyType</span> <span class="string">&quot;DWORD&quot;</span></span><br><span class="line"><span class="built_in">New-ItemProperty</span> <span class="string">&quot;HKLM:\Software\Microsoft\Update Services\Server\Setup&quot;</span> <span class="literal">-name</span> <span class="string">&quot;DumpServerSyncProtocolInfo&quot;</span> <span class="literal">-Value</span> <span class="number">1</span> <span class="literal">-propertyType</span> <span class="string">&quot;DWORD&quot;</span></span><br></pre></td></tr></table></figure>
 
 <ol start="4">
-<li>以下のコマンドを実行し IISサービスを再起動します。</li>
+<li>以下のコマンドを実行し IIS サービスを再起動します。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iisreset</span><br></pre></td></tr></table></figure>
 
 <ol start="5">
-<li>上記手順実施後、 [[WSUSインストールフォルダ]\LogFiles\ 配下のファイル]のログ出力が詳細化されます。</li>
+<li>上記手順実施後、 [WSUS インストール フォルダー]\LogFiles\ 配下のファイル]のログ出力が詳細化されます。</li>
 </ol>
-<h3 id="Powershellにより詳細モードを解除する手順"><a href="#Powershellにより詳細モードを解除する手順" class="headerlink" title="Powershellにより詳細モードを解除する手順"></a>Powershellにより詳細モードを解除する手順</h3><ol>
-<li>通常モードに戻す際は、以下のPowerShellコマンドレットを実行ください。</li>
+<h3 id="PowerShell-により詳細モードを解除する手順"><a href="#PowerShell-により詳細モードを解除する手順" class="headerlink" title="PowerShell により詳細モードを解除する手順"></a>PowerShell により詳細モードを解除する手順</h3><ol>
+<li>通常モードに戻す際は、以下の PowerShell コマンドを実行ください。</li>
 </ol>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Remove-ItemProperty</span> <span class="string">&quot;HKLM:\Software\Microsoft\Update Services\Server\Setup&quot;</span> <span class="literal">-name</span> <span class="string">&quot;LogLevel&quot;</span></span><br><span class="line"><span class="built_in">Remove-ItemProperty</span> <span class="string">&quot;HKLM:\Software\Microsoft\Update Services\Server\Setup&quot;</span> <span class="literal">-name</span> <span class="string">&quot;DumpServerSyncProtocolInfo&quot;</span></span><br></pre></td></tr></table></figure>
 
