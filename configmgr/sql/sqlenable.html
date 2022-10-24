@@ -124,7 +124,7 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="サイト-サーバー-ログの-SQL-出力の設定手順について"><a href="#サイト-サーバー-ログの-SQL-出力の設定手順について" class="headerlink" title="サイト サーバー ログの SQL 出力の設定手順について"></a>サイト サーバー ログの SQL 出力の設定手順について</h1><p>以下手順を実施することで、MECM サイト サーバーのログに 各コンポーネントが SQL 問い合わせを実施した際のログが出力されるようになります。</p>
+  <h1 id="サイト-サーバー-ログの-SQL-出力の設定手順について"><a href="#サイト-サーバー-ログの-SQL-出力の設定手順について" class="headerlink" title="サイト サーバー ログの SQL 出力の設定手順について"></a>サイト サーバー ログの SQL 出力の設定手順について</h1><p>以下手順を実施することで、Configuration Manager サイト サーバーのログに 各コンポーネントが SQL 問い合わせを実施した際のログが出力されるようになります。</p>
 <p>下記、その際の手順でございます。</p>
 <h2 id="SQL-出力による影響"><a href="#SQL-出力による影響" class="headerlink" title="SQL 出力による影響"></a>SQL 出力による影響</h2><p>出力されるログサイズが非常に大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
 <h2 id="有効化手順"><a href="#有効化手順" class="headerlink" title="有効化手順"></a>有効化手順</h2><ol>
@@ -136,7 +136,7 @@ function sidebar_toggle() {
 <li>「SqlEnabled」をダブルクリックし、0 の値を 1 に変更します。</li>
 <li>サービス マネージャーより、SMS_EXECUTIVE サービスを停止/開始します。</li>
 </ol>
-<h3 id="Powershellによる自動化"><a href="#Powershellによる自動化" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
+<h3 id="Powershell-による自動化"><a href="#Powershell-による自動化" class="headerlink" title="Powershell による自動化"></a>Powershell による自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;SqlEnabled&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Restart-Service</span> SMS_EXECUTIVE</span><br></pre></td></tr></table></figure>
 
 <h2 id="無効化手順"><a href="#無効化手順" class="headerlink" title="無効化手順"></a>無効化手順</h2><ol>
@@ -148,7 +148,7 @@ function sidebar_toggle() {
 <li>「SqlEnabled」をダブルクリックし、1 の値を 0 に変更します。</li>
 <li>サービス マネージャーより、SMS_EXECUTIVE サービスを停止/開始します。</li>
 </ol>
-<h3 id="Powershellによる自動化-1"><a href="#Powershellによる自動化-1" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
+<h3 id="Powershell-による自動化-1"><a href="#Powershell-による自動化-1" class="headerlink" title="Powershell による自動化"></a>Powershell による自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;SqlEnabled&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Restart-Service</span> SMS_EXECUTIVE</span><br></pre></td></tr></table></figure>
 </div>
 

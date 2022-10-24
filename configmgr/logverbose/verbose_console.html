@@ -11,7 +11,7 @@
 
     <title>
         
-          MECM 管理コンソール ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Configuration Manager 管理コンソール ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,14 +124,14 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="MECM-管理コンソール-ログの詳細化方法について"><a href="#MECM-管理コンソール-ログの詳細化方法について" class="headerlink" title="MECM 管理コンソール ログの詳細化方法について"></a>MECM 管理コンソール ログの詳細化方法について</h1><p>詳細調査のため、MECM 管理コンソール ログの詳細化方法について担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
+  <h1 id="Configuration-Manager-管理コンソール-ログの詳細化方法について"><a href="#Configuration-Manager-管理コンソール-ログの詳細化方法について" class="headerlink" title="Configuration Manager 管理コンソール ログの詳細化方法について"></a>Configuration Manager 管理コンソール ログの詳細化方法について</h1><p>詳細調査のため、Configuration Manager 管理コンソール ログの詳細化方法について担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
 <h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
-<p>なお、本手順において、各 MECM サービスの再起動や OS 再起動は不要です。</p>
-<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>&lt;MECM 管理コンソール インストール フォルダー&gt;\AdminConsole\AdminUILog\SMSAdminUI.log<br>※ &lt;MECM 管理コンソール インストール フォルダー&gt; は、既定で C:\Program Files (x86)\Microsoft Configuration Manager です。</p>
+<p>なお、本手順において、各 Configuration Manager サービスの再起動や OS 再起動は不要です。</p>
+<h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>&lt;Configuration Manager 管理コンソール インストール フォルダー&gt;\AdminConsole\AdminUILog\SMSAdminUI.log<br>※ &lt;Configuration Manager 管理コンソール インストール フォルダー&gt; は、既定で C:\Program Files (x86)\Microsoft Configuration Manager です。</p>
 <h2 id="詳細モード有効化手順"><a href="#詳細モード有効化手順" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><ol>
 <li>管理コンソールがインストールされているコンピュータにて、以下のファイルをテキスト エディタで開きます。<br>※編集前に該当ファイルをバックアップしていただくことをお勧めいたします。</li>
 </ol>
-<p>格納先フォルダー：&lt;MECM 管理コンソール インストール フォルダー&gt;\AdminConsole\bin<br>ファイル名：Microsoft.ConfigurationManagement.exe.config</p>
+<p>格納先フォルダー：&lt;Configuration Manager 管理コンソール インストール フォルダー&gt;\AdminConsole\bin<br>ファイル名：Microsoft.ConfigurationManagement.exe.config</p>
 <ol start="2">
 <li>下記のとおり変更して保存します。  </li>
 </ol>
@@ -144,13 +144,13 @@ function sidebar_toggle() {
 </ol>
 <p><code>HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\ConfigMgr10\AdminUI</code>  </p>
 <ol start="4">
-<li>MECM 管理コンソールを再起動して現象を再現させていただき、下記フォルダーの取得をお願いします。</li>
+<li>Configuration Manager 管理コンソールを再起動して現象を再現させていただき、下記フォルダーの取得をお願いします。</li>
 </ol>
-<p>&lt;MECM 管理コンソール インストール フォルダー&gt;\AdminConsole\AdminUILog</p>
+<p>&lt;Configuration Manager 管理コンソール インストール フォルダー&gt;\AdminConsole\AdminUILog</p>
 <h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><ol>
 <li>管理コンソールがインストールされているコンピュータにて、以下のファイルをテキスト エディタで開きます。<br>※編集前に該当ファイルをバックアップしていただくことをお勧めいたします。</li>
 </ol>
-<p>格納先フォルダー：&lt;MECM 管理コンソール インストール フォルダー&gt;\AdminConsole\bin<br>ファイル名：Microsoft.ConfigurationManagement.exe.config</p>
+<p>格納先フォルダー：&lt;Configuration Manager 管理コンソール インストール フォルダー&gt;\AdminConsole\bin<br>ファイル名：Microsoft.ConfigurationManagement.exe.config</p>
 <ol start="2">
 <li>下記のとおり変更して保存します。  </li>
 </ol>

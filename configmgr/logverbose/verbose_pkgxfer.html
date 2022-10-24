@@ -11,7 +11,7 @@
 
     <title>
         
-          MECM パッケージ転送マネージャー (PkgXferMgr) ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Configuration Manager パッケージ転送マネージャー (PkgXferMgr) ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,9 +124,9 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="MECM-パッケージ転送マネージャー-PkgXferMgr-ログの詳細化方法について"><a href="#MECM-パッケージ転送マネージャー-PkgXferMgr-ログの詳細化方法について" class="headerlink" title="MECM パッケージ転送マネージャー (PkgXferMgr) ログの詳細化方法について"></a>MECM パッケージ転送マネージャー (PkgXferMgr) ログの詳細化方法について</h1><p>詳細調査のため、MECM パッケージ転送マネージャー (PkgXferMgr) ログの詳細化を担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
-<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
-<p>なお、本手順において、MECM サービスプロセスの再起動は不要です。</p>
+  <h1 id="Configuration-Manager-パッケージ転送マネージャー-PkgXferMgr-ログの詳細化方法について"><a href="#Configuration-Manager-パッケージ転送マネージャー-PkgXferMgr-ログの詳細化方法について" class="headerlink" title="Configuration Manager パッケージ転送マネージャー (PkgXferMgr) ログの詳細化方法について"></a>Configuration Manager パッケージ転送マネージャー (PkgXferMgr) ログの詳細化方法について</h1><p>詳細調査のため、Configuration Manager パッケージ転送マネージャー (PkgXferMgr) ログの詳細化を担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
+<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログ バックアップ取得を推奨いたします。</p>
+<p>なお、本手順において、Configuration Manager サービスの再起動は不要です。</p>
 <h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>[MEMCインストールフォルダ]\Logs\PkgXferMgr.log</p>
 <h2 id="詳細モード有効化手順"><a href="#詳細モード有効化手順" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><ol>
 <li>[ファイル名を指定して実行] より regedit と入力して [OK] ボタンをクリックします。</li>
@@ -136,9 +136,9 @@ function sidebar_toggle() {
 <ol start="3">
 <li>上記キー配下の DebugLogging をダブルクリックし、値を「0」から「1」に変更します。</li>
 <li>上記キー配下の LoggingLevel をダブルクリックし、値を「1」から「0」に変更します。</li>
-<li>上記キー配下の MaxFileSize をダブルクリックし、表記を「10進数」に変更し、値を「2621440」から「20971520」に変更します。</li>
+<li>上記キー配下の MaxFileSize をダブルクリックし、表記を「10 進数」に変更し、値を「2621440」から「20971520」に変更します。</li>
 </ol>
-<h3 id="Powershellによる自動化"><a href="#Powershellによる自動化" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
+<h3 id="PowerShell-による自動化"><a href="#PowerShell-による自動化" class="headerlink" title="PowerShell による自動化"></a>PowerShell による自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いた PowerShell で実行ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_PACKAGE_TRANSFER_MANAGER&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;DebugLogging&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_PACKAGE_TRANSFER_MANAGER&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LoggingLevel&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_PACKAGE_TRANSFER_MANAGER&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;MaxFileSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;20971520&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br></pre></td></tr></table></figure>
 
 <h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><ol>
@@ -149,9 +149,9 @@ function sidebar_toggle() {
 <ol start="3">
 <li>上記キー配下の DebugLogging をダブルクリックし、値を「1」から「0」に変更します。</li>
 <li>上記キー配下の LoggingLevel をダブルクリックし、値を「0」から「1」に変更します。</li>
-<li>上記キー配下の MaxFileSize をダブルクリックし、表記を「10進数」に変更し、値を「20971520」から「2621440」に変更します。</li>
+<li>上記キー配下の MaxFileSize をダブルクリックし、表記を「10 進数」に変更し、値を「20971520」から「2621440」に変更します。</li>
 </ol>
-<h3 id="Powershellによる自動化-1"><a href="#Powershellによる自動化-1" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
+<h3 id="PowerShell-による自動化-1"><a href="#PowerShell-による自動化-1" class="headerlink" title="PowerShell による自動化"></a>PowerShell による自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いた PowerShell で実行ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_PACKAGE_TRANSFER_MANAGER&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;DebugLogging&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_PACKAGE_TRANSFER_MANAGER&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LoggingLevel&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\SMS\Tracing\SMS_PACKAGE_TRANSFER_MANAGER&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;MaxFileSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;2621440&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br></pre></td></tr></table></figure>
 </div>
 

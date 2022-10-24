@@ -11,7 +11,7 @@
 
     <title>
         
-          MECM エージェント ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Configuration Manager エージェント ログの詳細化方法について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,10 +124,10 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="MECM-エージェント-ログの詳細化方法について"><a href="#MECM-エージェント-ログの詳細化方法について" class="headerlink" title="MECM エージェント ログの詳細化方法について"></a>MECM エージェント ログの詳細化方法について</h1><p>詳細調査のため、MECM エージェント ログの詳細化を担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
-<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログバックアップ取得を推奨いたします。</p>
+  <h1 id="Configuration-Manager-エージェント-ログの詳細化方法について"><a href="#Configuration-Manager-エージェント-ログの詳細化方法について" class="headerlink" title="Configuration Manager エージェント ログの詳細化方法について"></a>Configuration Manager エージェント ログの詳細化方法について</h1><p>詳細調査のため、Configuration Manager エージェント ログの詳細化を担当者よりご案内することがございます。<br>下記、その際の手順でございます。</p>
+<h2 id="詳細化による影響"><a href="#詳細化による影響" class="headerlink" title="詳細化による影響"></a>詳細化による影響</h2><p>出力されるログサイズが大きくなるため、過去のログが流れることがございます。<br>過去ログの保持が必要な場合は事前のログ バックアップ取得を推奨いたします。</p>
 <h2 id="対象のログ"><a href="#対象のログ" class="headerlink" title="対象のログ"></a>対象のログ</h2><p>%windir%\CCM\Logs 配下全てのファイル  </p>
-<p>※ %windir%\CCM は MECM エージェント インストール先に応じて変更されます。</p>
+<p>※ %windir%\CCM は Configuration Manager エージェント インストール先に応じて変更されます。</p>
 <h2 id="詳細モード有効化手順"><a href="#詳細モード有効化手順" class="headerlink" title="詳細モード有効化手順"></a>詳細モード有効化手順</h2><p>詳細モードを有効にして、ログサイズを既定の 250 KB から 5 MB に変更します。<br>クライアントのディスク空き容量が少ない場合、LogMaxSize の値は任意でご調整ください。</p>
 <ol>
 <li>コントロール パネルより、[管理ツール] - [サービス] を起動し、SMS Agent Host サービスを停止します。</li>
@@ -138,10 +138,10 @@ function sidebar_toggle() {
 <ol start="4">
 <li>キー（フォルダー）名を「DebugLogging」と入力して、DebugLogging キーを作成します。</li>
 <li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogLevel」をダブルクリックし、1 の値を 0 に変更します。</li>
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 250000 (10 進) から 5000000 (10進) に変更します。</li>
-<li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、MECM エージェント ログの詳細モードが有効になります。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 250000 (10 進) から 5000000 (10 進) に変更します。</li>
+<li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、Configuration Manager エージェント ログの詳細モードが有効になります。</li>
 </ol>
-<h3 id="Powershellによる自動化"><a href="#Powershellによる自動化" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
+<h3 id="PowerShell-による自動化"><a href="#PowerShell-による自動化" class="headerlink" title="PowerShell による自動化"></a>PowerShell による自動化</h3><p>上記有効化手順を自動化したスクリプトになります。以下を管理者権限で開いた PowerShell で実行ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\@GLOBAL&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LogLevel&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;0&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\@GLOBAL&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LogMaxSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;5000000&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\@GLOBAL&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LogMaxHistory&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;10&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">New-Item</span> <span class="literal">-Path</span> <span class="string">&quot;HKLM:\Software\Microsoft\CCM\Logging\DebugLogging&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\DebugLogging&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;Enabled&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;True&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Restart-Service</span> CcmExec</span><br></pre></td></tr></table></figure>
 
 <h2 id="詳細モード無効化手順"><a href="#詳細モード無効化手順" class="headerlink" title="詳細モード無効化手順"></a>詳細モード無効化手順</h2><p>詳細モードを無効にして、ログサイズを 5 MB から既定の 250 KB に変更します。  </p>
@@ -153,10 +153,10 @@ function sidebar_toggle() {
 <p>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CCM\Logging\DebugLogging</p>
 <ol start="4">
 <li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogLevel」をダブルクリックし、0 の値を 1 に変更します。</li>
-<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 5000000 (10 進) から 250000 (10進) に変更します。</li>
-<li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、MECM エージェント ログの詳細モードが無効になります。</li>
+<li>HKEY_LOCAL_MACHINE\Software\Microsoft\CCM\Logging\@GLOBAL 配下の「LogMaxSize」をダブルクリックし、 5000000 (10 進) から 250000 (10 進) に変更します。</li>
+<li>上記手順 1. で停止した SMS Agent Host サービスを開始すると、Configuration Manager エージェント ログの詳細モードが無効になります。</li>
 </ol>
-<h3 id="Powershellによる自動化-1"><a href="#Powershellによる自動化-1" class="headerlink" title="Powershellによる自動化"></a>Powershellによる自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いたPowershellで実行ください。</p>
+<h3 id="PowerShell-による自動化-1"><a href="#PowerShell-による自動化-1" class="headerlink" title="PowerShell による自動化"></a>PowerShell による自動化</h3><p>上記無効化手順を自動化したスクリプトになります。以下を管理者権限で開いた PowerShell で実行ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\@GLOBAL&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LogLevel&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\@GLOBAL&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LogMaxSize&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;250000&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Set-ItemProperty</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\@GLOBAL&#x27;</span> <span class="literal">-Name</span> <span class="string">&quot;LogMaxHistory&quot;</span> <span class="literal">-Value</span> <span class="string">&quot;1&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">New-Item</span> <span class="literal">-Path</span> <span class="string">&quot;HKLM:\Software\Microsoft\CCM\Logging\DebugLogging&quot;</span> <span class="literal">-ErrorAction</span> SilentlyContinue</span><br><span class="line"><span class="built_in">Remove-Item</span> <span class="literal">-Path</span> <span class="string">&#x27;HKLM:\Software\Microsoft\CCM\Logging\DebugLogging&#x27;</span> <span class="literal">-Force</span></span><br><span class="line"><span class="built_in">Restart-Service</span> CcmExec</span><br></pre></td></tr></table></figure>
 </div>
 
