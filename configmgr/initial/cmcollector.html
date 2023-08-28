@@ -11,7 +11,7 @@
 
     <title>
         
-          Configuration Manager 初期調査に必要な資料採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Configuration Manager および WSUS 初期調査に必要な資料採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,7 +124,7 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="CMCollector-スクリプト実行による情報採取"><a href="#CMCollector-スクリプト実行による情報採取" class="headerlink" title="CMCollector スクリプト実行による情報採取"></a>CMCollector スクリプト実行による情報採取</h1><p>Configuration Manager の初期調査では CMCollector スクリプト による資料採取をお願いさせていただいております。</p>
+  <h1 id="CMCollector-スクリプト実行による情報採取"><a href="#CMCollector-スクリプト実行による情報採取" class="headerlink" title="CMCollector スクリプト実行による情報採取"></a>CMCollector スクリプト実行による情報採取</h1><p>Configuration Manager / WSUS の初期調査では CMCollector スクリプト による資料採取をお願いさせていただいております。</p>
 <p>調査に必要なシステム情報やイベント ログ等の各種情報を、自動で採取可能なスクリプト ファイルによる情報採取をお願いします。 (情報採取に伴うシャットダウンや再起動は行われません)。</p>
 <p>後述の手順で  CMCollector.ps1 を実行し、出力された zip ファイルを弊社までお寄せくださいますようお願いいたします。</p>
 <h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><ol>
@@ -172,9 +172,15 @@ function sidebar_toggle() {
 <li>Zip ファイルの内容に ConfigMgr\CMServer もしくは ConfigMgr\CMClientと いったフォルダが存在しない</li>
 <li>Zip ファイルの内容に ConfigMgr\msinfo32.nfo ファイルが存在しない</li>
 </ul>
-<h3 id="失敗時の手動資料採取手順"><a href="#失敗時の手動資料採取手順" class="headerlink" title="失敗時の手動資料採取手順"></a>失敗時の手動資料採取手順</h3><ul>
-<li><a href="https://jpmem.github.io/memlog/configmgr/initial/manually_serverlog.html">Configuration Manager サーバー資料の採取手順</a></li>
-<li><a href="https://jpmem.github.io/memlog/configmgr/initial/manually_clientlog.html">Configuration Manager エージェント資料の採取手順</a></li>
+<h3 id="失敗時の手動資料採取手順"><a href="#失敗時の手動資料採取手順" class="headerlink" title="失敗時の手動資料採取手順"></a>失敗時の手動資料採取手順</h3><p>CMCollector による情報採取に失敗したように見受けられる場合は、お手数ですが追加で以下の手順で手動による情報採取にご協力くださいますようお願いいたします。</p>
+<p>Configuration Manager の場合  </p>
+<ul>
+<li><a href="https://jpmem.github.io/memlog/configmgr/initial/manually_serverlog.html">Configuration Manager サーバー資料の採取手順 (手動)</a></li>
+<li><a href="https://jpmem.github.io/memlog/configmgr/initial/manually_clientlog.html">Configuration Manager エージェント資料の採取手順 (手動)</a></li>
+</ul>
+<p>WSUS サーバーの場合  </p>
+<ul>
+<li><a href="https://jpmem.github.io/memlog/wsus/initial/manually_serverlog.html">WSUS サーバー資料の採取手順 (手動)</a></li>
 </ul>
 
 </div>
