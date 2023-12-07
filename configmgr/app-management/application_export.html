@@ -11,7 +11,7 @@
 
     <title>
         
-          タスク シーケンスのエクスポート手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          アプリケーションのエクスポート手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,24 +124,17 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="タスク-シーケンスのエクスポート手順について"><a href="#タスク-シーケンスのエクスポート手順について" class="headerlink" title="タスク シーケンスのエクスポート手順について"></a>タスク シーケンスのエクスポート手順について</h1><p>調査対象のタスク シーケンスについて、下記手順でエクスポートした情報をご提供くださいますようお願いいたします。<br>依存関係のあるコンテンツを含む手順とするかどうかは、担当者からご案内いたします。</p>
+  <h1 id="アプリケーションのエクスポート手順について"><a href="#アプリケーションのエクスポート手順について" class="headerlink" title="アプリケーションのエクスポート手順について"></a>アプリケーションのエクスポート手順について</h1><p>調査対象のアプリケーションについて、下記手順でエクスポートした情報をご提供くださいますようお願いいたします。  </p>
 <h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>Configuration Manager コンソールが動作する端末</p>
 <h2 id="採取頂きたい識別情報"><a href="#採取頂きたい識別情報" class="headerlink" title="採取頂きたい識別情報"></a>採取頂きたい識別情報</h2><ol>
-<li>タスク シーケンス情報</li>
+<li>アプリケーション情報</li>
 </ol>
-<h2 id="手順-依存関係のあるコンテンツを含まない"><a href="#手順-依存関係のあるコンテンツを含まない" class="headerlink" title="手順 (依存関係のあるコンテンツを含まない)"></a>手順 (依存関係のあるコンテンツを含まない)</h2><ol>
-<li>[Configuration Manager コンソール] - [ソフトウェア ライブラリ] - [概要] - [オペレーティング システム] - [タスク シーケンス]と遷移します。  </li>
-<li>右ペインに表示された一覧から、対象タスク シーケンスを右クリックし、 [エクスポート] をクリックします。<br><img src="./osd_exportts/osd_exportts01.png" alt="">  </li>
-<li>[全般] ページで、任意のファイル名を入力し [選択したタスク シーケンスとその依存関係のコンテンツをすべてエクスポート] のチェック ボックスは<strong>オフ</strong>にして [次へ] をクリックします。<br><img src="./osd_exportts/osd_exportts02.png" alt="">  </li>
-<li>[次へ] をクリックしていき、ウィザード完了後に作成されたエクスポートした zip ファイルを取得します。<br><img src="./osd_exportts/osd_exportts04.png" alt="">  </li>
-</ol>
-<h2 id="手順-依存関係のあるコンテンツを含む"><a href="#手順-依存関係のあるコンテンツを含む" class="headerlink" title="手順 (依存関係のあるコンテンツを含む)"></a>手順 (依存関係のあるコンテンツを含む)</h2><p>タスク シーケンスと依存関係のあるコンテンツを含んだエクスポート手順となりますので、エクスポートしたファイル サイズは大きくなることがあります。</p>
-<ol>
-<li>[Configuration Manager コンソール] - [ソフトウェア ライブラリ] - [概要] - [オペレーティング システム] - [タスク シーケンス]と遷移します。</li>
-<li>右ペインに表示された一覧から、対象タスク シーケンスを右クリックし、 [エクスポート] をクリックします。<br><img src="./osd_exportts/osd_exportts01.png" alt="">  </li>
-<li>[全般] ページで、任意のファイル名を入力し [選択したタスク シーケンスとその依存関係のコンテンツをすべてエクスポート] のチェック ボックスは<strong>オン</strong>にして [次へ] をクリックします。<br><img src="./osd_exportts/osd_exportts03.png" alt="">  </li>
-<li>[次へ] をクリックしていき、ウィザード完了後にエクスポート先に指定したフォルダーをエクスプローラーで開きます。<br><img src="./osd_exportts/osd_exportts04.png" alt="">  </li>
-<li>エクスポート先のフォルダーに zip ファイルと files フォルダーが存在することを確認し、エクスポート先のフォルダーを圧縮した zip ファイルを取得します。<br><img src="./osd_exportts/osd_exportts05.png" alt="">  </li>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><ol>
+<li>[Configuration Manager コンソール] - [ソフトウェア ライブラリ] - [概要] - [アプリケーション管理] - [アプリケーション]と遷移します。  </li>
+<li>右ペインに表示された一覧から、対象アプリケーションを右クリックし、 [エクスポート] をクリックします。<br><img src="./application_export/application_export01.png" alt="">  </li>
+<li>[全般] ページで、任意のファイル名を入力し、チェックボックスはすべてオンにして [次へ] をクリックします。<br><img src="./application_export/application_export02.png" alt="">  </li>
+<li>[次へ] をクリックしていき、ウィザード完了後にエクスポート先に指定したフォルダーをエクスプローラーで開きます。<br><img src="./application_export/application_export03.png" alt="">  </li>
+<li>エクスポート先のフォルダーに zip ファイルと files フォルダーが存在することを確認し、エクスポート先のフォルダーを圧縮した zip ファイルを取得します。<br><img src="./application_export/application_export04.png" alt="">  </li>
 </ol>
 
 </div>
@@ -167,7 +160,7 @@ function sidebar_toggle() {
     <div class="book-post-meta">
   
     <div class="link">
-      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/os-deployment/">OS Deployment</a>
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/app-management/">App Management</a>
 
       
     </div>

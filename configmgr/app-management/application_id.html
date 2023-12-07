@@ -11,7 +11,7 @@
 
     <title>
         
-          パッケージ識別情報の採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          アプリケーション識別情報の採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,21 +124,28 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="パッケージ識別情報の採取手順について"><a href="#パッケージ識別情報の採取手順について" class="headerlink" title="パッケージ識別情報の採取手順について"></a>パッケージ識別情報の採取手順について</h1><p>調査対象のパッケージについて、下記でご案内する識別情報をご提供くださいますようお願いいたします。</p>
+  <h1 id="アプリケーション-識別情報の採取手順について"><a href="#アプリケーション-識別情報の採取手順について" class="headerlink" title="アプリケーション 識別情報の採取手順について"></a>アプリケーション 識別情報の採取手順について</h1><p>調査対象のアプリケーションについて、下記でご案内する識別情報をご提供くださいますようお願いいたします。</p>
 <h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>Configuration Manager コンソールが動作する端末</p>
 <h2 id="採取頂きたい識別情報"><a href="#採取頂きたい識別情報" class="headerlink" title="採取頂きたい識別情報"></a>採取頂きたい識別情報</h2><ol>
-<li>パッケージの名前</li>
-<li>パッケージ ID</li>
-<li>パッケージの展開 ID</li>
+<li>アプリケーションの名前</li>
+<li>アプリケーション構成情報 ID となる、「CI の固有 ID」</li>
+<li>展開の種類の「コンテンツ ID」</li>
+<li>展開の「パッケージ ID」、「モデル名」、「展開 ID」</li>
 </ol>
-<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><p>調査対象のパッケージについて、Configuration Manager コンソールから以下の手順で識別情報を採取し、ご提供ください。</p>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><p>調査対象のアプリケーションについて、Configuration Manager コンソールから以下の手順で識別情報を採取し、ご提供ください。</p>
 <ol>
-<li>[Configuration Manager コンソール] - [ソフトウェア ライブラリ] - [概要] - [アプリケーション 管理] - [パッケージ] と遷移します。  </li>
-<li>該当のパッケージの「パッケージ ID」を確認します。<br><img src="./package_id/package_id01.png" alt=""></li>
-<li>該当のパッケージを選択し、画面下部で「展開」タブ選択します。  </li>
-<li>表示項目の列名を右クリックし、「展開 ID」にチェックを入れます。<br><img src="./package_id/package_id02.png" alt=""></li>
-<li>該当のパッケージの展開の「展開 ID」を確認します。<br><img src="./package_id/package_id03.png" alt=""></li>
-<li>パッケージの名前に加えて、上記で入手した「パッケージ ID」、「展開 ID」の情報を弊社にご提供ください。</li>
+<li>[Configuration Manager コンソール] - [ソフトウェア ライブラリ] - [概要] - [アプリケーション 管理] - [アプリケーション] と遷移します。</li>
+<li>表示項目の列名を右クリックし、「CI の固有 ID」を追加します。<br><img src="./application_id/application_id01.png" alt=""></li>
+<li>「CI の固有 ID」が表示されている状態で、対象のアプリケーションを選択し、キーボードで「Ctrl + C」を押下します。<br><img src="./application_id/application_id02.png" alt=""></li>
+<li>メモ帳等を起動し、「Ctrl + V」を押下すると選択した行が貼り付けられます。<br><img src="./application_id/application_id03.png" alt=""></li>
+<li>Configuration Manager コンソールの画面に戻り、対象のアプリケーションが選択されている状態で、画面下部「展開の種類」を選択します。  </li>
+<li>「コンテンツ ID」が表示されている状態で、対象の展開の種類を選択し、キーボードで「Ctrl + C」を押下します。<br><img src="./application_id/application_id04.png" alt=""></li>
+<li>メモ帳等で「Ctrl + V」を押下すると選択した行が貼り付けられます。<br><img src="./application_id/application_id05.png" alt=""></li>
+<li>Configuration Manager コンソールの画面に戻り、対象のアプリケーションが選択されている状態で、画面下部「展開」を選択します。  </li>
+<li>表示項目の列名を右クリックし、「パッケージ ID」、「モデル名」、「展開 ID」を追加します。<br><img src="./application_id/application_id06.png" alt=""></li>
+<li>「パッケージ ID」、「モデル名」、「展開 ID」が表示されている状態で、対象の展開を選択し、キーボードで「Ctrl + C」を押下します。<br><img src="./application_id/application_id07.png" alt=""></li>
+<li>メモ帳等で「Ctrl + V」を押下すると選択した行が貼り付けられます。<br><img src="./application_id/application_id08.png" alt=""></li>
+<li>アプリケーションの名前に加えて、上記で入手した「CI の固有ID」、「コンテンツ ID」、「パッケージ ID」、「モデル名」、「展開 ID」の情報を弊社にご提供ください。</li>
 </ol>
 
 </div>
@@ -164,7 +171,7 @@ function sidebar_toggle() {
     <div class="book-post-meta">
   
     <div class="link">
-      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/appmanagement/">AppManagement</a>
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/app-management/">App Management</a>
 
       
     </div>
