@@ -124,47 +124,34 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="SQL-Query-結果の出力方法について"><a href="#SQL-Query-結果の出力方法について" class="headerlink" title="SQL Query 結果の出力方法について"></a>SQL Query 結果の出力方法について</h1><p>Configuration Manager にてデータベースの内容を確認するため、SQLクエリの実行をお願いいたします。</p>
+  <h1 id="SQL-Query-結果の出力方法について"><a href="#SQL-Query-結果の出力方法について" class="headerlink" title="SQL Query 結果の出力方法について"></a>SQL Query 結果の出力方法について</h1><p>Configuration Manager にてデータベースの内容を確認するため、SQL クエリの実行をお願いいたします。</p>
 <h2 id="実行するクエリ"><a href="#実行するクエリ" class="headerlink" title="実行するクエリ"></a>実行するクエリ</h2><p>実行いただきたいクエリは都度担当者より案内させていただきます。</p>
 <h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>Configuration Manager のデータベースサーバー</p>
 <h2 id="必要なアカウント"><a href="#必要なアカウント" class="headerlink" title="必要なアカウント"></a>必要なアカウント</h2><p>Configuration Manager のサイト データベース管理者権限が必要になります。</p>
 <h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><ol>
-<li>SQL Server Management Studio を起動します。</li>
-<li>対象のサイト データベースに接続します。<br><img src="./sqlquery/sqlquery01.png" alt=""></li>
-<li>[ツール] - [オプション] をクリックします。<br><img src="./sqlquery/sqlquery02.png" alt=""></li>
-<li>[クエリ結果] - [SQL Server] - [結果をグリッドで表示] を開き、以下のチェック ボックスをオンにします。<ul>
-<li>[結果のコピーまたは保存時に列のヘッダーを含める]<br><img src="./sqlquery/sqlquery03.png" alt=""></li>
-</ul>
-</li>
+<li>SQL Server Management Studio を起動し、対象のサイト データベースをホストするインスタンスに接続します。<br><img src="./sqlquery/sqlquery01.png" alt="">  </li>
+<li>[ツール] - [オプション] をクリックします。<br><img src="./sqlquery/sqlquery02.png" alt="">  </li>
+<li>[クエリ結果] - [SQL Server] - [結果をグリッドで表示] を開き、[結果のコピーまたは保存時に列のヘッダーを含める] のチェック ボックスをオンにします。<br><img src="./sqlquery/sqlquery03.png" alt=""></li>
 </ol>
-<h2 id="採取手順"><a href="#採取手順" class="headerlink" title="採取手順"></a>採取手順</h2><p>サイト データベースを構成したサーバーにおいて、手順の実施をお願いします。</p>
+<h2 id="採取手順-CSV-形式で出力"><a href="#採取手順-CSV-形式で出力" class="headerlink" title="採取手順 (CSV 形式で出力)"></a>採取手順 (CSV 形式で出力)</h2><p>担当者より SQL 実行結果の採取をご案内した場合、基本的にこちらの手順を実施してください。</p>
 <ol>
-<li>対象サイトが使用している SQL サーバー上で、 Microsoft SQL Server management Studio を開きます。</li>
-<li>SQL Server データベース エンジンに接続し、左ペインより以下のツリーを展開します。</li>
+<li>SQL Server Management Studio を起動し、対象のサイト データベースをホストするインスタンスに接続します。  </li>
+<li>[&lt;サーバー名&gt; (SQL Server &lt;バージョン番号&gt; - &lt;ログイン ユーザー アカウント名&gt;)] - [データベース] - [CM_&lt;サイト コード&gt;] を右クリックし、[新しいクエリ] を実行します。</li>
+<li>CM_&lt;サイト コード&gt; を右クリックし、[新しいクエリ] を実行します。<br><img src="./sqlquery/sqlquery05.png" alt=""></li>
+<li>中央ペインにクエリの編集画面が表示されますので、各クエリを入力し、上部のツール バーにある [実行] ボタンをクリックします。<br><img src="./sqlquery/sqlquery06.png" alt="">  </li>
+<li>中央下部のペインにクエリの出力結果が表示されます。<br><img src="./sqlquery/sqlquery07.png" alt="">  </li>
+<li>結果ペインにて、右クリックより、[結果に名前を付けて保存] を選択し、結果を csv 形式で保存します。<br><img src="./sqlquery/sqlquery08.png" alt=""></li>
+<li>SQL Server Management Studio のウィンドウで × ボタンをクリックして、SQL Server Management Studio を終了します。クエリを保存するかどうかのダイアログが表示されますが、特に保存する必要はございませんので、[No] をクリックしてください。  </li>
+<li>ご採取いただきました、csv をお手数ではございますが、弊社までお送りいただけますようよろしくお願いいたします。  </li>
 </ol>
-<p>&lt;サーバー名&gt; (SQL Server &lt;バージョン番号&gt; - &lt;ログイン ユーザー アカウント名&gt;<br>└ データベース<br>  └ CM_&lt;サイト コード&gt;</p>
-<p><img src="./sqlquery/sqlquery04.png" alt=""></p>
-<ol start="3">
-<li>CM_&lt;サイト コード&gt; を右クリックし、[新しいクエリ] を実行します。</li>
-</ol>
-<p><img src="./sqlquery/sqlquery05.png" alt=""></p>
-<ol start="4">
-<li>中央ペインにクエリの編集画面が表示されますので、各クエリを入力し、上部のツール バーにある [実行] ボタンをクリックします。</li>
-</ol>
-<p><img src="./sqlquery/sqlquery06.png" alt=""></p>
-<ol start="5">
-<li>中央下部のペインにクエリの出力結果が表示されます。</li>
-</ol>
-<p><img src="./sqlquery/sqlquery07.png" alt=""></p>
-<ol start="6">
-<li>結果ペインにて、右クリックより、[結果に名前を付けて保存] を選択し、結果を csv 形式で保存します。</li>
-</ol>
-<p><img src="./sqlquery/sqlquery08.png" alt=""></p>
-<ol start="7">
-<li><p>SQL Server Management Studio のウィンドウで × ボタンをクリックして、SQL Server Management Studio を終了します。<br>クエリを保存するかどうかのダイアログが表示されますが、特に保存する必要はございませんので、[No] をクリックしてください。</p>
-</li>
-<li><p>ご採取いただきました、csv をお手数ではございますが、弊社までお送りいただけますようよろしくお願いいたします。</p>
-</li>
+<h2 id="採取手順-RPT-形式で出力"><a href="#採取手順-RPT-形式で出力" class="headerlink" title="採取手順 (RPT 形式で出力)"></a>採取手順 (RPT 形式で出力)</h2><p>担当者より RPT 形式での SQL 実行結果の出力をご案内した場合、こちらの手順を実施してください。</p>
+<ol>
+<li>SQL Server Management Studio を起動し、対象のサイト データベースをホストするインスタンスに接続します。  </li>
+<li>[&lt;サーバー名&gt; (SQL Server &lt;バージョン番号&gt; - &lt;ログイン ユーザー アカウント名&gt;)] - [データベース] - [CM_&lt;サイト コード&gt;] を右クリックし、[新しいクエリ] を実行します。  </li>
+<li>CM_&lt;サイト コード&gt; を右クリックし、[新しいクエリ] を実行します。<br><img src="./sqlquery/sqlquery05.png" alt="">  </li>
+<li>中央ペインにクエリの編集画面が表示されますので、[Ctrl + Shift + F] を押下するか、ツール バーの [結果をファイルに出力 (Ctrl + Shift + F)] アイコンをクリックした後、各クエリを入力し、上部のツール バーにある [実行] ボタンをクリックします。<br><img src="./sqlquery/sqlquery09.png" alt="">  </li>
+<li>結果の保存ダイアログが表示されますので、出力先とファイル名を入力して保存します。<br><img src="./sqlquery/sqlquery10.png" alt="">  </li>
+<li>ご採取いただきました、rpt をお手数ではございますが、弊社までお送りいただけますようよろしくお願いいたします。  </li>
 </ol>
 <p>本情報の内容（添付文書、リンク先などを含む）は、作成日時点でのものであり、予告なく変更される場合があります。</p>
 
