@@ -11,7 +11,7 @@
 
     <title>
         
-          SQL Server Profiler による情報採取 - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          Active Directory スキーマ拡張オブジェクトの取得手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,30 +124,25 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="SQL-Server-Profiler-による情報採取"><a href="#SQL-Server-Profiler-による情報採取" class="headerlink" title="SQL Server Profiler による情報採取"></a>SQL Server Profiler による情報採取</h1><p>SQL Server データベースに対して実行されたクエリやストアド プロシージャなどのイベント データをトレースする SQL Server Profiler による情報採取手順です。<br>SQL Server がインストールされたサーバーで手順を実施します。</p>
-<h2 id="影響"><a href="#影響" class="headerlink" title="影響"></a>影響</h2><p>採取時は一時的に負荷が発生する場合があります。なお、OS 再起動の必要はありません。</p>
-<h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>Configuration Manager のサイト データベース サーバー</p>
-<h2 id="採取開始手順"><a href="#採取開始手順" class="headerlink" title="採取開始手順"></a>採取開始手順</h2><ol>
-<li><p>SQL Server Management Studio を開きます。</p>
+  <h1 id="Active-Directory-スキーマ拡張オブジェクトの取得手順について"><a href="#Active-Directory-スキーマ拡張オブジェクトの取得手順について" class="headerlink" title="Active Directory スキーマ拡張オブジェクトの取得手順について"></a>Active Directory スキーマ拡張オブジェクトの取得手順について</h1><p>以下にご案内する手順にて、Configuration Manager サイト サーバーが Active Directory スキーマ拡張により Active Directory 側に発行している、サイト情報や管理ポイント情報、境界情報の取得をお願い致します。</p>
+<h2 id="実行手順"><a href="#実行手順" class="headerlink" title="実行手順"></a>実行手順</h2><ol>
+<li><p>Active Directory のドメインコントローラーに管理者権限で接続ください。</p>
 </li>
-<li><p>メニュー バーより、[ツール] - [SQL Server プロファイラー] をクリックします。<br><img src="./sqlprofiler/sqlprofiler01.png" alt=""></p>
-</li>
-<li><p>SQL Server Profiler が起動します。「サーバーへの接続」ダイアログが表示されるので、サイト データベースに接続します。 ダイアログが表示されない場合は、 メニュー バーより、[ファイル] - [新しいトレース] をクリックすると、ダイアログが表示されます。<br><img src="./sqlprofiler/sqlprofiler02.png" alt=""></p>
-</li>
-<li><p>[全般] タブでトレース名に任意の名前を入力し、使用するテンプレートは [空白] を選択します。<br><img src="./sqlprofiler/sqlprofiler03.png" alt=""></p>
-</li>
-<li><p>[イベントの選択] タブで [すべてのイベントを表示する] [すべての列を表示する] にチェックを入れます。</p>
-</li>
-<li><p>イベント列を展開し、以下のイベントを選択して、[実行] をクリックし、情報採取を開始します。  </p>
+<li><p>以下にご案内するスクリプトをメモ帳等に貼り付けてください。</p>
 </li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- Broker すべて</span><br><span class="line">- Errors and warnings すべて</span><br><span class="line">- Stored Procedures</span><br><span class="line">  - RPC:Completed</span><br><span class="line">  - RPC:Starting</span><br><span class="line">  - SP:Completed</span><br><span class="line">  - SP:Starting</span><br><span class="line">  - SP:StmtCompleted</span><br><span class="line">  - SP:StmtStarting</span><br><span class="line">- TSQL</span><br><span class="line">  - SQL:BatchCompleted</span><br><span class="line">  - SQL:BatchStarting</span><br><span class="line">  - SQL:StmtCompleted</span><br><span class="line">  - SQL:StmtStarting</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Initial Setting -------------------------</span></span><br><span class="line"><span class="variable">$domain</span> = <span class="string">&quot;contoso.com&quot;</span></span><br><span class="line"><span class="variable">$output_path</span> = <span class="string">&quot;C:\Temp\SystemManagement.txt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Main Process ----------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$domainNodeTemp</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span> (<span class="variable">$node</span> <span class="keyword">in</span> <span class="variable">$domain</span>.Split(<span class="string">&#x27;.&#x27;</span>))&#123;</span><br><span class="line">    <span class="variable">$domainNodeTemp</span> += <span class="string">&quot;DC=<span class="variable">$</span>&#123;node&#125;,&quot;</span>    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$domainNode</span> = <span class="variable">$domainNodeTemp</span>.TrimEnd(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">Get-ADObject</span> <span class="literal">-Filter</span> * <span class="literal">-SearchBase</span> <span class="string">&quot;CN=System Management,CN=System,<span class="variable">$</span>&#123;domainNode&#125;&quot;</span> <span class="literal">-Properties</span> * | <span class="built_in">Out-File</span> <span class="literal">-Append</span> <span class="variable">$output_path</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="./sqlprofiler/sqlprofiler04.png" alt=""></p>
-<h2 id="採取停止手順"><a href="#採取停止手順" class="headerlink" title="採取停止手順"></a>採取停止手順</h2><ol>
-<li><p>[選択したトレースを停止] ボタンをクリックし、情報採取を停止します。<br><img src="./sqlprofiler/sqlprofiler05.png" alt=""></p>
+<ol start="3">
+<li><p>上記 $domainの箇所をお客様のドメイン名に、$output_pathの箇所が出力結果の保存先となりますので適宜変更ください。</p>
 </li>
-<li><p>停止後は、メニュー バーより、[ファイル] - [名前を付けて保存] - [トレース ファイル] をクリックし、.trc ファイルの保存、及び採取をお願いします。<br><img src="./sqlprofiler/sqlprofiler06.png" alt=""></p>
+<li><p>$output_path に設定した箇所のフォルダを用意ください。</p>
+</li>
+<li><p>編集したスクリプトを拡張子 ps1 として保存ください。</p>
+</li>
+<li><p>管理者権限でPowershellを開き、上記 ps1 を実行ください。</p>
+</li>
+<li><p>出力されたファイルを弊社にご提供ください。</p>
 </li>
 </ol>
 
@@ -174,7 +169,7 @@ function sidebar_toggle() {
     <div class="book-post-meta">
   
     <div class="link">
-      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/sql/">SQL</a>
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/active-directory/">Active Directory</a>
 
       
     </div>

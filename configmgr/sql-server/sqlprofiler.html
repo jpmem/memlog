@@ -11,7 +11,7 @@
 
     <title>
         
-          構成データ（構成基準･構成項目）のエクスポート手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          SQL Server Profiler による情報採取 - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,16 +124,31 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="構成データ（構成基準･構成項目）のエクスポート手順について"><a href="#構成データ（構成基準･構成項目）のエクスポート手順について" class="headerlink" title="構成データ（構成基準･構成項目）のエクスポート手順について"></a>構成データ（構成基準･構成項目）のエクスポート手順について</h1><p>調査対象の構成データ（構成基準･構成項目）について、下記手順でエクスポートした情報をご提供くださいますようお願いいたします。  </p>
-<h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>Configuration Manager コンソールが動作する端末</p>
-<h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><ol>
-<li>構成データ（構成基準･構成項目）情報</li>
+  <h1 id="SQL-Server-Profiler-による情報採取"><a href="#SQL-Server-Profiler-による情報採取" class="headerlink" title="SQL Server Profiler による情報採取"></a>SQL Server Profiler による情報採取</h1><p>SQL Server データベースに対して実行されたクエリやストアド プロシージャなどのイベント データをトレースする SQL Server Profiler による情報採取手順です。<br>SQL Server がインストールされたサーバーで手順を実施します。</p>
+<h2 id="影響"><a href="#影響" class="headerlink" title="影響"></a>影響</h2><p>採取時は一時的に負荷が発生する場合があります。なお、OS 再起動の必要はありません。</p>
+<h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>Configuration Manager のサイト データベース サーバー</p>
+<h2 id="採取開始手順"><a href="#採取開始手順" class="headerlink" title="採取開始手順"></a>採取開始手順</h2><ol>
+<li><p>SQL Server Management Studio を開きます。</p>
+</li>
+<li><p>メニュー バーより、[ツール] - [SQL Server プロファイラー] をクリックします。<br><img src="./sqlprofiler/sqlprofiler01.png" alt=""></p>
+</li>
+<li><p>SQL Server Profiler が起動します。「サーバーへの接続」ダイアログが表示されるので、サイト データベースに接続します。 ダイアログが表示されない場合は、 メニュー バーより、[ファイル] - [新しいトレース] をクリックすると、ダイアログが表示されます。<br><img src="./sqlprofiler/sqlprofiler02.png" alt=""></p>
+</li>
+<li><p>[全般] タブでトレース名に任意の名前を入力し、使用するテンプレートは [空白] を選択します。<br><img src="./sqlprofiler/sqlprofiler03.png" alt=""></p>
+</li>
+<li><p>[イベントの選択] タブで [すべてのイベントを表示する] [すべての列を表示する] にチェックを入れます。</p>
+</li>
+<li><p>イベント列を展開し、以下のイベントを選択して、[実行] をクリックし、情報採取を開始します。  </p>
+</li>
 </ol>
-<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><p>下記手順でエクスポートした cab ファイルに構成基準と構成基準に紐付く構成項目が含まれますので、構成項目を別途エクスポートしていただく必要はございません。  </p>
-<ol>
-<li>[Configuration Manager コンソール] - [資産とコンプライアンス - [概要] - [コンプライアンス設定] - [構成基準]と遷移します。  </li>
-<li>右ペインに表示された一覧から、対象構成基準を右クリックし、 [エクスポート] をクリックします。<br><img src="./baseline_export/baseline_export01.png" alt="">  </li>
-<li>エクスポート先のフォルダーと任意のファイル名を入力し、保存してください。<br><img src="./baseline_export/baseline_export02.png" alt="">  </li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- Broker すべて</span><br><span class="line">- Errors and warnings すべて</span><br><span class="line">- Stored Procedures</span><br><span class="line">  - RPC:Completed</span><br><span class="line">  - RPC:Starting</span><br><span class="line">  - SP:Completed</span><br><span class="line">  - SP:Starting</span><br><span class="line">  - SP:StmtCompleted</span><br><span class="line">  - SP:StmtStarting</span><br><span class="line">- TSQL</span><br><span class="line">  - SQL:BatchCompleted</span><br><span class="line">  - SQL:BatchStarting</span><br><span class="line">  - SQL:StmtCompleted</span><br><span class="line">  - SQL:StmtStarting</span><br></pre></td></tr></table></figure>
+
+<p><img src="./sqlprofiler/sqlprofiler04.png" alt=""></p>
+<h2 id="採取停止手順"><a href="#採取停止手順" class="headerlink" title="採取停止手順"></a>採取停止手順</h2><ol>
+<li><p>[選択したトレースを停止] ボタンをクリックし、情報採取を停止します。<br><img src="./sqlprofiler/sqlprofiler05.png" alt=""></p>
+</li>
+<li><p>停止後は、メニュー バーより、[ファイル] - [名前を付けて保存] - [トレース ファイル] をクリックし、.trc ファイルの保存、及び採取をお願いします。<br><img src="./sqlprofiler/sqlprofiler06.png" alt=""></p>
+</li>
 </ol>
 
 </div>
@@ -159,7 +174,7 @@ function sidebar_toggle() {
     <div class="book-post-meta">
   
     <div class="link">
-      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/compliance/">Compliance</a>
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/sql-server/">SQL Server</a>
 
       
     </div>
