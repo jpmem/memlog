@@ -11,7 +11,7 @@
 
     <title>
         
-          構成データ（構成基準･構成項目）のエクスポート手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          コンポーネント ステータス メッセージの採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -124,16 +124,16 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="構成データ（構成基準･構成項目）のエクスポート手順について"><a href="#構成データ（構成基準･構成項目）のエクスポート手順について" class="headerlink" title="構成データ（構成基準･構成項目）のエクスポート手順について"></a>構成データ（構成基準･構成項目）のエクスポート手順について</h1><p>調査対象の構成データ（構成基準･構成項目）について、下記手順でエクスポートした情報をご提供くださいますようお願いいたします。  </p>
+  <h1 id="コンポーネント-ステータス-メッセージの採取手順について"><a href="#コンポーネント-ステータス-メッセージの採取手順について" class="headerlink" title="コンポーネント ステータス メッセージの採取手順について"></a>コンポーネント ステータス メッセージの採取手順について</h1><p>調査対象のコンポーネントについて、下記手順でエクスポートした情報をご提供くださいますようお願いいたします。<br>調査対象コンポーネントと調査対象範囲の日時は、担当者からご案内いたします。</p>
 <h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>Configuration Manager コンソールが動作する端末</p>
 <h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><ol>
-<li>構成データ（構成基準･構成項目）情報</li>
+<li>コンポーネント ステータス メッセージ</li>
 </ol>
-<h2 id="採取手順"><a href="#採取手順" class="headerlink" title="採取手順"></a>採取手順</h2><p>下記手順でエクスポートした cab ファイルに構成基準と構成基準に紐付く構成項目が含まれますので、構成項目を別途エクスポートしていただく必要はございません。  </p>
-<ol>
-<li>[Configuration Manager コンソール] - [資産とコンプライアンス - [概要] - [コンプライアンス設定] - [構成基準]と遷移します。  </li>
-<li>右ペインに表示された一覧から、対象構成基準を右クリックし、 [エクスポート] をクリックします。<br><img src="./baseline_export/baseline_export01.png" alt="">  </li>
-<li>エクスポート先のフォルダーと任意のファイル名を入力し、保存してください。<br><img src="./baseline_export/baseline_export02.png" alt="">  </li>
+<h2 id="採取手順"><a href="#採取手順" class="headerlink" title="採取手順"></a>採取手順</h2><ol>
+<li>[Configuration Manager コンソール] - [監視] - [概要] - [システムのステータス] - [コンポーネントのステータス] と遷移します。 </li>
+<li>右ペインに表示された一覧から、調査対象コンポーネントを右クリックし、 [メッセージ表示] - [すべて] をクリックします。<br><img src="./console_compstatusmsg/console_compstatusmsg01.png" alt="">    </li>
+<li>表示期間を設定するダイアログ ボックスが開きますので、調査対象範囲の日時を選択し、[OK] をクリックします。<br><img src="./console_compstatusmsg/console_compstatusmsg02.png" alt="">  </li>
+<li>ステータス メッセージ ビューアーが起動しますので、メニュー バーより、[ファイル] - [名前を付けて保存] を選択し、コンマ区切り形式で、すべてのメッセージを保存して下さい。<br><img src="./console_compstatusmsg/console_compstatusmsg03.png" alt="">  </li>
 </ol>
 
 </div>
@@ -159,7 +159,7 @@ function sidebar_toggle() {
     <div class="book-post-meta">
   
     <div class="link">
-      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/device-compliance/">Device Compliance</a>
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/core-infrastructure/">Core infrastructure</a>
 
       
     </div>

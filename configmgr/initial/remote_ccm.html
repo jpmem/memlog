@@ -124,9 +124,8 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="Configuration-Manager-エージェント資料のリモート採取手順について"><a href="#Configuration-Manager-エージェント資料のリモート採取手順について" class="headerlink" title="Configuration Manager エージェント資料のリモート採取手順について"></a>Configuration Manager エージェント資料のリモート採取手順について</h1><p>エンドユーザー 様が事象発生端末を利用中であるなどの理由で、お客様が直接 Confingration Manager (ConfigMgr) クライアント ログを採取できない場合、該当の端末が ConfigMgr コンソール上 表示されていれば、リモートからログ資料を採取出来ます。</p>
-<p>CMCollector より採取される内容が限られますが、ある程度の内容は調査可能ですので、リモートからの採取しか出来ない場合は一旦こちらの手順にて資料採取し弊社までお寄せくださいますようお願い致します。</p>
-<h1 id="採取される内容"><a href="#採取される内容" class="headerlink" title="採取される内容"></a>採取される内容</h1><p>以下の資料が採取されます。</p>
+  <h1 id="Configuration-Manager-エージェント資料のリモート採取手順について"><a href="#Configuration-Manager-エージェント資料のリモート採取手順について" class="headerlink" title="Configuration Manager エージェント資料のリモート採取手順について"></a>Configuration Manager エージェント資料のリモート採取手順について</h1><p>エンドユーザー 様が事象発生端末を利用中であるなどの理由で、お客様が直接 Confingration Manager (ConfigMgr) クライアント ログを採取できない場合、該当の端末が ConfigMgr コンソール上 表示されていれば、リモートからログ資料を採取出来ます。<br>CMCollector より採取される内容が限られますが、ある程度の内容は調査可能ですので、リモートからの採取しか出来ない場合は一旦こちらの手順にて資料採取し弊社までお寄せくださいますようお願い致します。</p>
+<h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><p>以下の資料が採取されます。</p>
 <ol>
 <li>C:\Windows\ccmsetup\Logs フォルダー 配下の内容</li>
 <li>C:\Windows\ccm\Logs フォルダー 配下の内容</li>
@@ -137,27 +136,17 @@ function sidebar_toggle() {
 </ul>
 </li>
 </ol>
-<h1 id="実施手順"><a href="#実施手順" class="headerlink" title="実施手順"></a>実施手順</h1><ol>
-<li><p>[ConfigMgr コンソール] - [資産とコンプライアンス] - [概要] - [デバイス] を開きます。<br><img src="./remote_ccm/remote_ccm01.png" alt="">  </p>
-</li>
-<li><p>資料採取対象の デバイス を選択します。<br><img src="./remote_ccm/remote_ccm02.png" alt="">  </p>
-</li>
-<li><p>[クライアント診断] - [クライアント ログの収集]を実行します。同内容は対象 デバイス を右クリックしても表示可能です。<br><img src="./remote_ccm/remote_ccm03.png" alt="">  </p>
-</li>
-<li><p>以下の ダイアログ が表示されますので、[OK] を選択します。<br><img src="./remote_ccm%5Cremote_ccm04.png" alt=""><br>※端末がオフラインの場合は以下が表示されます。いずれにせよ [OK] を選択します。<br><img src="./remote_ccm/remote_ccm05.png" alt="">  </p>
-</li>
-<li><p>資料採取されるまで待ちます。デバイス 状態が オンライン であれば比較的早めに収集されますが、デバイス 状態 がオフライン の場合は、オンラインになってから 資料が採取されます。</p>
-</li>
-<li><p>[ConfigMgr コンソール] - [資産とコンプライアンス] - [概要] - [デバイス] 画面を表示します。</p>
-</li>
-<li><p>[クライアント ログの収集]を実施していた デバイス を選択し、[開始] - [リソース エクスプローラー] を開きます。同内容は対象 デバイス を右クリックしても表示可能です。<br><img src="./remote_ccm/remote_ccm06.png" alt="">  </p>
-</li>
-<li><p>[診断ファイル] に 最新の日付で レコード が登録されているのを確認します。<br><img src="./remote_ccm/remote_ccm07.png" alt="">  </p>
-</li>
-<li><p>該当のレコードを右クリックし、「保存」をクリックし、格納場所を選択します。<br><img src="./remote_ccm/remote_ccm08.png" alt="">  </p>
-</li>
-<li><p>「Support_」で始まる文字列の zip 拡張子ファイルを弊社までお寄せください。</p>
-</li>
+<h2 id="採取手順"><a href="#採取手順" class="headerlink" title="採取手順"></a>採取手順</h2><ol>
+<li>[ConfigMgr コンソール] - [資産とコンプライアンス] - [概要] - [デバイス] を開きます。<br><img src="./remote_ccm/remote_ccm01.png" alt="">  </li>
+<li>資料採取対象の デバイス を選択します。<br><img src="./remote_ccm/remote_ccm02.png" alt="">  </li>
+<li>[クライアント診断] - [クライアント ログの収集]を実行します。同内容は対象 デバイス を右クリックしても表示可能です。<br><img src="./remote_ccm/remote_ccm03.png" alt="">  </li>
+<li>以下の ダイアログ が表示されますので、[OK] を選択します。<br><img src="./remote_ccm%5Cremote_ccm04.png" alt=""><br>※端末がオフラインの場合は以下が表示されます。いずれにせよ [OK] を選択します。<br><img src="./remote_ccm/remote_ccm05.png" alt="">  </li>
+<li>資料採取されるまで待ちます。デバイス 状態が オンライン であれば比較的早めに収集されますが、デバイス 状態 がオフライン の場合は、オンラインになってから 資料が採取されます。</li>
+<li>[ConfigMgr コンソール] - [資産とコンプライアンス] - [概要] - [デバイス] 画面を表示します。</li>
+<li>[クライアント ログの収集]を実施していた デバイス を選択し、[開始] - [リソース エクスプローラー] を開きます。同内容は対象 デバイス を右クリックしても表示可能です。<br><img src="./remote_ccm/remote_ccm06.png" alt="">  </li>
+<li>[診断ファイル] に 最新の日付で レコード が登録されているのを確認します。<br><img src="./remote_ccm/remote_ccm07.png" alt="">  </li>
+<li>該当のレコードを右クリックし、「保存」をクリックし、格納場所を選択します。<br><img src="./remote_ccm/remote_ccm08.png" alt="">  </li>
+<li>「Support_」で始まる文字列の zip 拡張子ファイルを弊社までお寄せください。</li>
 </ol>
 
 </div>
