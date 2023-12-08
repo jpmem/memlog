@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          コンポーネントに対応するログ サイズの変更手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,60 +123,44 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>Core infrastructure</h1>
-  
+          <div class="book-post">
+  <h1 id="コンポーネントに対応するログ-サイズの変更手順について"><a href="#コンポーネントに対応するログ-サイズの変更手順について" class="headerlink" title="コンポーネントに対応するログ サイズの変更手順について"></a>コンポーネントに対応するログ サイズの変更手順について</h1><p>サイト サーバー内では数多くのコンポーネントが動作しており、コンポーネント毎に出力されるログが異なります。<br>問題の調査のために、特定のコンポーネントに対応するログ サイズの変更が必要な場合、以下の手順でログ サイズを変更してください。<br>調査対象コンポーネントは、担当者からご案内いたします。  </p>
+<h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>Configuration Manager コンソールが動作する端末</p>
+<h2 id="実行手順"><a href="#実行手順" class="headerlink" title="実行手順"></a>実行手順</h2><ol>
+<li>[Configuration Manager コンソール] - [監視] - [概要] - [システムのステータス] - [コンポーネントのステータス] と遷移します。 </li>
+<li>一覧から、サイト システム列が調査対象サーバーとなっているコンポーネントを右クリックして [開始] - [Configuration Manager サービス マネージャー] をクリックします。<br><img src="./console_complogsize/console_complogsize01.png" alt="">  </li>
+<li>左ペインの [コンポーネント] を展開して、対象コンポーネントをダブルクリックします。  </li>
+<li>右ペインの対象コンポーネントを右クリックして [ログの記録] をクリックします。<br><img src="./console_complogsize/console_complogsize02.png" alt="">  </li>
+<li>ログのサイズを変更して [OK] をクリックします。<br><img src="./console_complogsize/console_complogsize03.png" alt="">  </li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>Core infrastructure</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/core-infrastructure/console_powershell.html">
-                Configuration Manager PowerShell コマンドレットの実行方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/core-infrastructure/console_compstatusmsg.html">
-                コンポーネント ステータス メッセージの採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/core-infrastructure/console_complogsize.html">
-                コンポーネントに対応するログ サイズの変更手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/core-infrastructure/console_auditmsg.html">
-                監査ステータス メッセージの採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/core-infrastructure/">Core infrastructure</a>
+
+      
+    </div>
   
 </div>
   
