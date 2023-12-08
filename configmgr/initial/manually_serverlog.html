@@ -139,8 +139,8 @@ function sidebar_toggle() {
 <li>グループ ポリシー情報</li>
 </ol>
 <h3 id="Configuration-Manager-サイト-サーバー-ログ"><a href="#Configuration-Manager-サイト-サーバー-ログ" class="headerlink" title="Configuration Manager サイト サーバー ログ"></a>Configuration Manager サイト サーバー ログ</h3><p>サイト サーバーの下記フォルダーを圧縮の上、取得をお願いします。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\Microsoft Configuration Manager\Logs </span><br></pre></td></tr></table></figure>
-<p>※ 複数サイト存在する場合は全てのサイトサーバーで取得お願いします。<br>※ \Program Files は Configuration Manager インストール先に応じて変更されます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;サイト インストール フォルダー&gt;\Logs </span><br></pre></td></tr></table></figure>
+<p>※ 複数サイト存在する場合は全てのサイトサーバーで取得お願いします。</p>
 <h3 id="Configuration-Manager-サイト-サーバー-セットアップ-ログ"><a href="#Configuration-Manager-サイト-サーバー-セットアップ-ログ" class="headerlink" title="Configuration Manager サイト サーバー セットアップ ログ"></a>Configuration Manager サイト サーバー セットアップ ログ</h3><p>サイト サーバーのセットアップのログが、システム ドライブ直下に以下のファイル名で存在しますので、取得をお願い致します。</p>
 <ul>
 <li>ConfigMgrPrereq.log</li>
@@ -152,17 +152,17 @@ function sidebar_toggle() {
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\SMS_CCM\Logs </span><br><span class="line">%windir%\CCM\Logs</span><br><span class="line">\SMS_CCM\Logs</span><br></pre></td></tr></table></figure>
 
 <p>※ インストールのタイミングによって異なります。上記フォルダーを全てご確認ください。<br>※ \Program Files は SCCM インストール先に応じて変更されます。</p>
-<p>また、管理ポイントがサイト サーバーと同居していない場合、以下に追加の管理ポイントのログがございますので、<br>圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
+<p>また、管理ポイントがサイト サーバーと同居していない場合、以下に追加の管理ポイントのログがございますので、圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
 
-<h3 id="Configuration-Manager-リモート配布ポイント-ログ"><a href="#Configuration-Manager-リモート配布ポイント-ログ" class="headerlink" title="Configuration Manager リモート配布ポイント ログ"></a>Configuration Manager リモート配布ポイント ログ</h3><p>配布ポイントがサイト サーバーと同居していない場合、以下にリモート配布ポイントのログがございますので、<br>圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
+<h3 id="Configuration-Manager-リモート配布ポイント-ログ"><a href="#Configuration-Manager-リモート配布ポイント-ログ" class="headerlink" title="Configuration Manager リモート配布ポイント ログ"></a>Configuration Manager リモート配布ポイント ログ</h3><p>配布ポイントがサイト サーバーと同居していない場合、以下にリモート配布ポイントのログがございますので、圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
 
 <h3 id="Configuration-Manager-ソフトウェアの更新ポイント-ログ"><a href="#Configuration-Manager-ソフトウェアの更新ポイント-ログ" class="headerlink" title="Configuration Manager ソフトウェアの更新ポイント ログ"></a>Configuration Manager ソフトウェアの更新ポイント ログ</h3><p>ソフトウェアの更新ポイントの役割をもつコンピュータの下記 2 点のフォルダーを圧縮の上、取得をお願いします。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\Update Services\Logfiles</span><br><span class="line">\Program Files\Microsoft Configuration Manager\Logs または \SMS\Logs </span><br></pre></td></tr></table></figure>
-<p>※ \Program Files は SCCM インストール先に応じて変更されます。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;サイト インストール フォルダー&gt;\Logs または \SMS\Logs </span><br></pre></td></tr></table></figure>
+
 <p>また、<a href="https://jpmem.github.io/memlog/wsus/initial/manually_serverlog.html">WSUS サーバー資料の採取手順について</a> に記載の情報も合わせて取得をお願いします。</p>
-<h3 id="Configuration-Manager-クラウド管理ゲートウェイ接続ポイント-ログ"><a href="#Configuration-Manager-クラウド管理ゲートウェイ接続ポイント-ログ" class="headerlink" title="Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ"></a>Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ</h3><p>クラウド管理ゲートウェイ接続ポイントをご利用の場合、かつサイト サーバーと同居していない場合は以下にクラウド管理ゲートウェイ接続ポイントのログが<br>ございますので、圧縮の上ご提供くださいますようお願い致します。サイト サーバーと同居している場合はサイト サーバーと同じ場所にログがございます。</p>
+<h3 id="Configuration-Manager-クラウド管理ゲートウェイ接続ポイント-ログ"><a href="#Configuration-Manager-クラウド管理ゲートウェイ接続ポイント-ログ" class="headerlink" title="Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ"></a>Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ</h3><p>クラウド管理ゲートウェイ接続ポイントをご利用の場合、かつサイト サーバーと同居していない場合は以下にクラウド管理ゲートウェイ接続ポイントのログがございますので、圧縮の上ご提供くださいますようお願い致します。サイト サーバーと同居している場合はサイト サーバーと同じ場所にログがございます。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
 
 <h3 id="IIS-ログ"><a href="#IIS-ログ" class="headerlink" title="IIS ログ"></a>IIS ログ</h3><p>管理ポイント、配布ポイントの役割をもつコンピュータの以下のファイルを取得してください。</p>
