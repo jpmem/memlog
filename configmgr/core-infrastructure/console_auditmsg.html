@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          監査ステータス メッセージの採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,54 +123,47 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>Core infrastructure</h1>
-  
+          <div class="book-post">
+  <h1 id="監査ステータス-メッセージの採取手順について"><a href="#監査ステータス-メッセージの採取手順について" class="headerlink" title="監査ステータス メッセージの採取手順について"></a>監査ステータス メッセージの採取手順について</h1><p>調査対象サイトの監査ステータス メッセージについて、下記手順でエクスポートした情報をご提供くださいますようお願いいたします。<br>調査対象サイトと調査対象範囲の日時は、担当者からご案内いたします。</p>
+<h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>Configuration Manager コンソールが動作する端末</p>
+<h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><ol>
+<li>監査ステータス メッセージ</li>
+</ol>
+<h2 id="採取手順"><a href="#採取手順" class="headerlink" title="採取手順"></a>採取手順</h2><ol>
+<li>[Configuration Manager コンソール] - [監視] - [概要] - [システムのステータス] - [ステータス メッセージ クエリ] と遷移します。 </li>
+<li>右ペインに表示された一覧から、[特定のサイトからのすべての監査ステータス メッセージ] を右クリックし、[メッセージを表示] をクリックします。<br><img src="./console_auditmsg/console_auditmsg01.png" alt="">  </li>
+<li>ダイアログ ボックスが開きますので、[サイト コード] をクリックし [指定] を選択して、採取対象サイトのサイト コードを入力します。[既存値の読み込み] を選択して、サイト コードを指定しても構いません。<br><img src="./console_auditmsg/console_auditmsg02.png" alt="">  </li>
+<li>[時間] をクリックし、[日時の指定] を選択して 調査対象範囲の日時を選択し、[OK] をクリックします。<br><img src="./console_auditmsg/console_auditmsg03.png" alt=""> </li>
+<li>ステータス メッセージ ビューアーが起動しますので、メニュー バーより、[ファイル] - [名前を付けて保存] を選択し、コンマ区切り形式で、すべてのメッセージを保存して下さい。<br><img src="./console_compstatusmsg/console_compstatusmsg03.png" alt="">  </li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>Core infrastructure</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/core-infrastructure/console_powershell.html">
-                Configuration Manager PowerShell コマンドレットの実行方法について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/core-infrastructure/console_compstatusmsg.html">
-                コンポーネント ステータス メッセージの採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/core-infrastructure/console_auditmsg.html">
-                監査ステータス メッセージの採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/core-infrastructure/">Core infrastructure</a>
+
+      
+    </div>
   
 </div>
   
