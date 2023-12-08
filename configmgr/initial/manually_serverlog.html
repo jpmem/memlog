@@ -124,13 +124,13 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="Configuration-Manager-サーバー資料の採取手順について"><a href="#Configuration-Manager-サーバー資料の採取手順について" class="headerlink" title="Configuration Manager サーバー資料の採取手順について"></a>Configuration Manager サーバー資料の採取手順について</h1><p>何らかの理由により、 CMCollector による資料採取が出来ない場合において、 Configuration Manager サーバーの資料を採取いただく際の手順を以下にご案内します。<br>なお、お問い合わせの内容によっては、追加の資料採取手順を担当者よりご案内することもございますので、ご了承くださいますようお願い致します。</p>
+  <h1 id="Configuration-Manager-サーバー資料の採取手順-手動"><a href="#Configuration-Manager-サーバー資料の採取手順-手動" class="headerlink" title="Configuration Manager サーバー資料の採取手順 (手動)"></a>Configuration Manager サーバー資料の採取手順 (手動)</h1><p>何らかの理由により、 CMCollector による資料採取が出来ない場合において、 Configuration Manager サーバーの資料を採取いただく際の手順を以下にご案内します。<br>なお、お問い合わせの内容によっては、追加の資料採取手順を担当者よりご案内することもございますので、ご了承くださいますようお願い致します。</p>
 <h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><ol>
 <li>Configuration Manager サイト サーバー ログ</li>
 <li>Configuration Manager サイト サーバー セットアップ ログ</li>
 <li>Configuration Manager 管理ポイント ログ</li>
 <li>Configuration Manager 配布ポイント ログ</li>
-<li>Configuration Manager ソフトウェア更新ポイント ログ</li>
+<li>Configuration Manager ソフトウェアの更新ポイント ログ</li>
 <li>Configuration Manager クラウド管理ゲートウェイ接続ポイント ログ</li>
 <li>IIS ログ</li>
 <li>イベント ログ</li>
@@ -158,7 +158,7 @@ function sidebar_toggle() {
 <h3 id="Configuration-Manager-リモート配布ポイント-ログ"><a href="#Configuration-Manager-リモート配布ポイント-ログ" class="headerlink" title="Configuration Manager リモート配布ポイント ログ"></a>Configuration Manager リモート配布ポイント ログ</h3><p>配布ポイントがサイト サーバーと同居していない場合、以下にリモート配布ポイントのログがございますので、<br>圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
 
-<h3 id="Configuration-Manager-ソフトウェア更新ポイント-ログ"><a href="#Configuration-Manager-ソフトウェア更新ポイント-ログ" class="headerlink" title="Configuration Manager ソフトウェア更新ポイント ログ"></a>Configuration Manager ソフトウェア更新ポイント ログ</h3><p>ソフトウェアの更新ポイントの役割をもつコンピュータの下記 2 点のフォルダーを圧縮の上、取得をお願いします。</p>
+<h3 id="Configuration-Manager-ソフトウェアの更新ポイント-ログ"><a href="#Configuration-Manager-ソフトウェアの更新ポイント-ログ" class="headerlink" title="Configuration Manager ソフトウェアの更新ポイント ログ"></a>Configuration Manager ソフトウェアの更新ポイント ログ</h3><p>ソフトウェアの更新ポイントの役割をもつコンピュータの下記 2 点のフォルダーを圧縮の上、取得をお願いします。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\Update Services\Logfiles</span><br><span class="line">\Program Files\Microsoft Configuration Manager\Logs または \SMS\Logs </span><br></pre></td></tr></table></figure>
 <p>※ \Program Files は SCCM インストール先に応じて変更されます。</p>
 <p>また、<a href="https://jpmem.github.io/memlog/wsus/initial/manually_serverlog.html">WSUS サーバー資料の採取手順について</a> に記載の情報も合わせて取得をお願いします。</p>
