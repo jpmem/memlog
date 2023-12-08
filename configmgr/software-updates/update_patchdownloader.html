@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          smsts.log の採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,48 +123,47 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>Software Updates</h1>
-  
+          <div class="book-post">
+  <h1 id="PatchDownloader-log-の採取手順について"><a href="#PatchDownloader-log-の採取手順について" class="headerlink" title="PatchDownloader.log  の採取手順について"></a>PatchDownloader.log  の採取手順について</h1><p>PatchDownloader.log は、Configuration Manager コンソールや自動展開規則でソフトウェア更新プログラムをダウンロードした時の動作が記録されます。<br>ログは複数の場所に作成されている可能性がございますので、下記でご案内する手順で採取した PatchDownloader.log をご提供くださいますようお願いいたします。</p>
+<h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><ul>
+<li>Configuration Manager コンソールが動作する端末</li>
+<li>サイト サーバー</li>
+</ul>
+<h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><ol>
+<li>PatchDownloader.log または PatchDownloader.lo_</li>
+</ol>
+<h2 id="採取手順"><a href="#採取手順" class="headerlink" title="採取手順"></a>採取手順</h2><ol>
+<li>CD/DVD Drive 以外の認識されている全ドライブ文字を対象として、以下のコマンドを実行します。<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dir</span> &lt;ドライブ文字&gt;:\ /s /b | <span class="built_in">find</span> &quot;PatchDownloader.lo&quot;</span><br></pre></td></tr></table></figure></li>
+<li>上記コマンドにて発見された全ての PatchDownloader.log または PatchDownloader.lo_ について、フォルダーにまとめ、zip ファイルに圧縮の上、採取をお願いいたします。<br>例)<br><img src="./update_patchdownloader/update_patchdownloader01.png" alt="">  </li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>Software Updates</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/software-updates/update_patchdownloader.html">
-                smsts.log の採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/software-updates/update_program_id.html">
-                更新プログラム識別情報の採取手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/software-updates/">Software Updates</a>
+
+      
+    </div>
   
 </div>
   
