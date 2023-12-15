@@ -137,6 +137,7 @@ function sidebar_toggle() {
 <li>システム情報</li>
 <li>レジストリ情報</li>
 <li>グループ ポリシー情報</li>
+<li>[SQL] サイト システムと境界情報</li>
 </ol>
 <h3 id="Configuration-Manager-サイト-サーバー-ログ"><a href="#Configuration-Manager-サイト-サーバー-ログ" class="headerlink" title="Configuration Manager サイト サーバー ログ"></a>Configuration Manager サイト サーバー ログ</h3><p>サイト サーバーの下記フォルダーを圧縮の上、取得をお願いします。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;サイト インストール フォルダー&gt;\Logs </span><br></pre></td></tr></table></figure>
@@ -147,10 +148,8 @@ function sidebar_toggle() {
 <li>ConfigMgrSetup.log</li>
 <li>ConfigMgrSetupWizard.log</li>
 </ul>
-<h3 id="Configuration-Manager-管理ポイント-ログ"><a href="#Configuration-Manager-管理ポイント-ログ" class="headerlink" title="Configuration Manager 管理ポイント ログ"></a>Configuration Manager 管理ポイント ログ</h3><p>管理ポイントの役割をもつコンピューターの下記フォルダーを圧縮の上、取得をお願いします。</p>
-<p>以下のいずれかに存在します。</p>
+<h3 id="Configuration-Manager-管理ポイント-ログ"><a href="#Configuration-Manager-管理ポイント-ログ" class="headerlink" title="Configuration Manager 管理ポイント ログ"></a>Configuration Manager 管理ポイント ログ</h3><p>管理ポイントの役割をもつコンピューターの下記フォルダーを圧縮の上、取得をお願いします。<br>以下のいずれかに存在します。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\Program Files\SMS_CCM\Logs </span><br><span class="line">%windir%\CCM\Logs</span><br><span class="line">\SMS_CCM\Logs</span><br></pre></td></tr></table></figure>
-
 <p>※ インストールのタイミングによって異なります。上記フォルダーを全てご確認ください。<br>※ \Program Files は SCCM インストール先に応じて変更されます。</p>
 <p>また、管理ポイントがサイト サーバーと同居していない場合、以下に追加の管理ポイントのログがございますので、圧縮の上、取得をお願い致します。サイト サーバーと同居している場合は不要です。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\SMS\Logs</span><br></pre></td></tr></table></figure>
@@ -182,11 +181,34 @@ function sidebar_toggle() {
 <li>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\SMS</li>
 <li>HKEY_LOCAL_MACHINE\SOFTWARE\Policies</li>
 </ul>
-<p>レジストリのエクスポート手順は以下をご参照ください。<br><a href="https://jpmem.github.io/memlog/general/registry/export-reg.html">https://jpmem.github.io/memlog/general/registry/export-reg.html</a></p>
+<p>レジストリのエクスポート手順は<a href="https://jpmem.github.io/memlog/general/registry/export-reg.html">こちら</a>をご参照ください。  </p>
 <h3 id="グループ-ポリシー情報"><a href="#グループ-ポリシー情報" class="headerlink" title="グループ ポリシー情報"></a>グループ ポリシー情報</h3><p>以下の手順で出力した htm ファイルの取得をお願いします。</p>
 <ol>
 <li>管理者権限でコマンド プロンプトを起動し、任意のフォルダーに移動のうえ下記コマンドを実行します。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpresult /H gpresult.htm</span><br></pre></td></tr></table></figure></li>
 <li>移動先フォルダーに出力された gpresult.htm を取得します。</li>
+</ol>
+<h3 id="SQL-サイト-システムと境界情報"><a href="#SQL-サイト-システムと境界情報" class="headerlink" title="[SQL] サイト システムと境界情報"></a>[SQL] サイト システムと境界情報</h3><p>最上位サイトのデータベース サーバーで <a href="https://jpmem.github.io/memlog/configmgr/sql-server/sqlquery.html#%E6%8E%A1%E5%8F%96%E6%89%8B%E9%A0%86-CSV-%E5%BD%A2%E5%BC%8F%E3%81%A7%E5%87%BA%E5%8A%9B">SQL Query 結果の出力方法について - 採取手順 (CSV 形式で出力)</a> の手順で、以下のクエリの実行結果の採取をお願いします。</p>
+<ol>
+<li><p>サイト システム情報</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> SysResList</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>サイト既定の境界グループ情報</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> vSMS_DefaultBoundaryGroup</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>境界グループ別サーバー割り当て情報 (サイト毎)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> vSMS_BoundaryGroupSiteSystems</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>境界グループ情報</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.GroupID,a.Name,a.DefaultSiteCode,c.Value</span><br><span class="line"><span class="keyword">from</span> BoundaryGroup a</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> BoundaryGroupMembers b <span class="keyword">on</span> a.GroupID<span class="operator">=</span>b.GroupID</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> BoundaryEx c</span><br><span class="line"><span class="keyword">on</span> b.BoundaryID<span class="operator">=</span>c.BoundaryID</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>境界情報</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> BoundaryEx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>境界グループ別サーバー割り当て情報</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> a.GroupID,a.Name,a.DefaultSiteCode,b.<span class="operator">*</span> <span class="keyword">from</span> BoundaryGroup a</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> BoundaryGroupSiteSystem b</span><br><span class="line"><span class="keyword">on</span> a.GroupID<span class="operator">=</span>b.GroupID</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>境界グループの関係情報</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> src.Name <span class="keyword">as</span> <span class="string">&#x27;SourceGroupName&#x27;</span>, dst.Name <span class="keyword">as</span> <span class="string">&#x27;DestinationGroupName&#x27;</span>, base.<span class="operator">*</span> <span class="keyword">from</span> BoundaryGroupRelationships base </span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> BoundaryGroup src <span class="keyword">on</span> src.GroupID <span class="operator">=</span> base.SourceGroupID</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> BoundaryGroup dst <span class="keyword">on</span> dst.GroupID <span class="operator">=</span> base.DestinationGroupID</span><br></pre></td></tr></table></figure></li>
 </ol>
 
 </div>
