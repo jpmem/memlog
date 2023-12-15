@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/memlog/favicon.png" />
+    
+
+    <title>
+        
+          PXE ブート問題発生時の情報採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/memlog/css/book.css">
+
+    
+<script src="/memlog/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/memlog/">
+    <span>トップ ページへ</span>
+  </a>
+</div>
+    <div class="book-menu">
+  <h1 id="資料採取手順"><a href="#資料採取手順" class="headerlink" title="資料採取手順"></a>資料採取手順</h1><ul>
+<li><a href="/memlog/categories/general">一般</a></li>
+<li><a href="/memlog/categories/configmgr">ConfigMgr</a></li>
+<li><a href="/memlog/categories/wsus">WSUS</a></li>
+<li><a href="/memlog/categories/wua">WUA</a></li>
+</ul>
+<h1 id="リンク"><a href="#リンク" class="headerlink" title="リンク"></a>リンク</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cssjpn.github.io/">日本マイクロソフト サポート情報</a></li>
+<li><a href="https://jpmem.github.io/blog/">Japan Microsoft Intune Support Blog</a></li>
+</ul>
+
+</div>
+
+
+<script src="/memlog/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="PXE-ブート問題発生時の情報採取手順について"><a href="#PXE-ブート問題発生時の情報採取手順について" class="headerlink" title="PXE ブート問題発生時の情報採取手順について"></a>PXE ブート問題発生時の情報採取手順について</h1><p>OS 展開において、PXE ブートができない問題が発生した場合の情報採取手順です。</p>
+<h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><ul>
+<li>プライマリ サイト サーバー</li>
+<li>PXE 機能を有効にした配布ポイント サーバー</li>
+<li>(DHCP サーバー)</li>
+</ul>
+<h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><ol>
+<li>ネットワーク パケット情報</li>
+<li>WDSUTIL コマンドの実行結果</li>
+<li>Windows 展開サービス トレース ログ</li>
+<li>Configuration Manager サーバー情報</li>
+</ol>
+<h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><h3 id="Windows-展開サービス-トレース-ログの有効化"><a href="#Windows-展開サービス-トレース-ログの有効化" class="headerlink" title="Windows 展開サービス トレース ログの有効化"></a>Windows 展開サービス トレース ログの有効化</h3><p><strong>Windows 展開サービス (WDS) を使用していない場合、本手順の実施は不要です。</strong></p>
+<p>[イベント ビューアー] - [アプリケーションとサービス ログ] - [Microsoft] - [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] の順にクリックし、表示された [Admin] [Debug] [Metadata] [Operational] [Packet] [Verbose] をそれぞれ右クリックします。<br>[ログの有効化] が表示されている場合、その項目をクリックし、ログを有効にします。[ログの無効化] が表示される場合、すでにログ採取が有効となっているため、操作不要です。  </p>
+<h2 id="採取手順-DHCP-サーバーでの情報採取なし"><a href="#採取手順-DHCP-サーバーでの情報採取なし" class="headerlink" title="採取手順 (DHCP サーバーでの情報採取なし)"></a>採取手順 (DHCP サーバーでの情報採取なし)</h2><h3 id="1-ネットワーク-パケットの採取開始"><a href="#1-ネットワーク-パケットの採取開始" class="headerlink" title="1. ネットワーク パケットの採取開始"></a>1. ネットワーク パケットの採取開始</h3><p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br><a href="https://jpmem.github.io/memlog/general/network/nwpacket.html">ネットワーク パケットの採取</a> の手順で、採取を開始します。</p>
+<h3 id="2-事象の再現"><a href="#2-事象の再現" class="headerlink" title="2. 事象の再現"></a>2. 事象の再現</h3><p>作業場所: 問題のクライアント端末<br>問題のクライアントで PXE ブートを行い、PXE ブートが失敗する事象を再現します。</p>
+<h3 id="3-ネットワーク-パケットの採取停止と情報採取"><a href="#3-ネットワーク-パケットの採取停止と情報採取" class="headerlink" title="3. ネットワーク パケットの採取停止と情報採取"></a>3. ネットワーク パケットの採取停止と情報採取</h3><p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br><a href="https://jpmem.github.io/memlog/general/network/nwpacket.html">ネットワーク パケットの採取</a> の手順で、採取を停止し、情報を採取します。</p>
+<h3 id="4-WDSUTIL-コマンドの実行結果の採取"><a href="#4-WDSUTIL-コマンドの実行結果の採取" class="headerlink" title="4. WDSUTIL コマンドの実行結果の採取"></a>4. WDSUTIL コマンドの実行結果の採取</h3><p><strong>Windows 展開サービス (WDS) を使用していない場合、本手順の実施は不要です。</strong></p>
+<p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br>以下の手順で WDSUTIL コマンドの実行結果を採取します。　　</p>
+<ol>
+<li>管理者権限でコマンド プロンプトを起動し、任意のフォルダーに移動のうえ下記コマンドを実行します。<br><code>wdsutil.exe /get-server /show:all /detailed &gt; wdsutil.txt</code></li>
+<li>移動先フォルダーに出力された wdsutil.txt を取得します。</li>
+</ol>
+<h3 id="5-Windows-展開サービス-トレース-ログの採取"><a href="#5-Windows-展開サービス-トレース-ログの採取" class="headerlink" title="5. Windows 展開サービス トレース ログの採取"></a>5. Windows 展開サービス トレース ログの採取</h3><p><strong>Windows 展開サービス (WDS) を使用していない場合、本手順の実施は不要です。</strong></p>
+<p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br>イベント ビューアーより以下のイベント ログをそれぞれ採取します。<br> .evtx 形式で問題ございません。</p>
+<ul>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Admin]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Debug]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Metadata]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Operational]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Packet]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Verbose]</li>
+</ul>
+<p>ログ採取完了後、必要に応じて右クリック メニューより [ログの無効化] をクリックして、対象ログの採取を無効化してください。</p>
+<h3 id="6-Configuration-Manager-サーバー情報の採取"><a href="#6-Configuration-Manager-サーバー情報の採取" class="headerlink" title="6. Configuration Manager サーバー情報の採取"></a>6. Configuration Manager サーバー情報の採取</h3><p>作業場所 : プライマリ サイト サーバー、PXE 機能を有効にした配布ポイント サーバー<br><a href="https://jpmem.github.io/memlog/configmgr/initial/cmcollector.html">Configuration Manager および WSUS 初期調査に必要な資料採取手順について</a> の手順で、情報採取をお願いします。</p>
+<p>スクリプトによる情報採取ができない場合は、<a href="https://jpmem.github.io/memlog/configmgr/initial/manually_serverlog.html">Configuration Manager サーバー資料の採取手順 (手動)</a> の手順で、情報採取をお願いします。</p>
+<h2 id="採取手順-DHCP-サーバーでの情報採取あり"><a href="#採取手順-DHCP-サーバーでの情報採取あり" class="headerlink" title="採取手順 (DHCP サーバーでの情報採取あり)"></a>採取手順 (DHCP サーバーでの情報採取あり)</h2><p>PXE ブートを試行した時に、Abort エラーとなり、TFTP によるブートイメージのダウンロードに進まない問題の場合、以下の手順で情報採取をお願いいたします。</p>
+<h3 id="1-ネットワーク-パケットの採取開始-DHCP-サーバー"><a href="#1-ネットワーク-パケットの採取開始-DHCP-サーバー" class="headerlink" title="1. ネットワーク パケットの採取開始 (DHCP サーバー)"></a>1. ネットワーク パケットの採取開始 (DHCP サーバー)</h3><p>作業場所: DHCP サーバー<br><a href="https://jpmem.github.io/memlog/general/network/nwpacket.html">ネットワーク パケットの採取</a> の手順で、採取を開始します。</p>
+<h3 id="2-ネットワーク-パケットの採取開始-配布ポイント-サーバー"><a href="#2-ネットワーク-パケットの採取開始-配布ポイント-サーバー" class="headerlink" title="2. ネットワーク パケットの採取開始 (配布ポイント サーバー)"></a>2. ネットワーク パケットの採取開始 (配布ポイント サーバー)</h3><p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br><a href="https://jpmem.github.io/memlog/general/network/nwpacket.html">ネットワーク パケットの採取</a> の手順で、採取を開始します。</p>
+<h3 id="3-事象の再現"><a href="#3-事象の再現" class="headerlink" title="3. 事象の再現"></a>3. 事象の再現</h3><p>作業場所: 問題のクライアント端末<br>問題のクライアントで PXE ブートを行い、PXE ブートが失敗する事象を再現します。</p>
+<h3 id="4-ネットワーク-パケットの採取停止と情報採取-DHCP-サーバー"><a href="#4-ネットワーク-パケットの採取停止と情報採取-DHCP-サーバー" class="headerlink" title="4. ネットワーク パケットの採取停止と情報採取 (DHCP サーバー)"></a>4. ネットワーク パケットの採取停止と情報採取 (DHCP サーバー)</h3><p>作業場所: DHCP サーバー<br><a href="https://jpmem.github.io/memlog/general/network/nwpacket.html">ネットワーク パケットの採取</a> の手順で、採取を停止し、情報を採取します。</p>
+<h3 id="5-ネットワーク-パケットの採取停止と情報採取-配布ポイント-サーバー"><a href="#5-ネットワーク-パケットの採取停止と情報採取-配布ポイント-サーバー" class="headerlink" title="5. ネットワーク パケットの採取停止と情報採取 (配布ポイント サーバー)"></a>5. ネットワーク パケットの採取停止と情報採取 (配布ポイント サーバー)</h3><p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br><a href="https://jpmem.github.io/memlog/general/network/nwpacket.html">ネットワーク パケットの採取</a> の手順で、採取を停止し、情報を採取します。</p>
+<h3 id="6-WDSUTIL-コマンドの実行結果の採取"><a href="#6-WDSUTIL-コマンドの実行結果の採取" class="headerlink" title="6. WDSUTIL コマンドの実行結果の採取"></a>6. WDSUTIL コマンドの実行結果の採取</h3><p><strong>Windows 展開サービス (WDS) を使用していない場合、本手順の実施は不要です。</strong></p>
+<p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br>以下の手順で WDSUTIL コマンドの実行結果を採取します。　　</p>
+<ol>
+<li>管理者権限でコマンド プロンプトを起動し、任意のフォルダーに移動のうえ下記コマンドを実行します。<br><code>wdsutil.exe /get-server /show:all /detailed &gt; wdsutil.txt</code></li>
+<li>移動先フォルダーに出力された wdsutil.txt を取得します。</li>
+</ol>
+<h3 id="7-Windows-展開サービス-トレース-ログの採取"><a href="#7-Windows-展開サービス-トレース-ログの採取" class="headerlink" title="7. Windows 展開サービス トレース ログの採取"></a>7. Windows 展開サービス トレース ログの採取</h3><p><strong>Windows 展開サービス (WDS) を使用していない場合、本手順の実施は不要です。</strong></p>
+<p>作業場所: PXE 機能を有効にした配布ポイント サーバー<br>イベント ビューアーより以下のイベント ログをそれぞれ採取します。<br> .evtx 形式で問題ございません。</p>
+<ul>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Admin]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Debug]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Metadata]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Operational]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Packet]</li>
+<li>[アプリケーションとサービス ログ] - [Microsoft] ₋ [Microsoft] - [Windows] - [Deployment-Services-Diagnostics] - [Verbose]</li>
+</ul>
+<p>ログ採取完了後、必要に応じて右クリック メニューより [ログの無効化] をクリックして、対象ログの採取を無効化してください。</p>
+<h3 id="8-Configuration-Manager-サーバー情報の採取"><a href="#8-Configuration-Manager-サーバー情報の採取" class="headerlink" title="8. Configuration Manager サーバー情報の採取"></a>8. Configuration Manager サーバー情報の採取</h3><p>作業場所 : プライマリ サイト サーバー、PXE 機能を有効にした配布ポイント サーバー<br><a href="https://jpmem.github.io/memlog/configmgr/initial/cmcollector.html">Configuration Manager および WSUS 初期調査に必要な資料採取手順について</a> の手順で、情報採取をお願いします。</p>
+<p>スクリプトによる情報採取ができない場合は、<a href="https://jpmem.github.io/memlog/configmgr/initial/manually_serverlog.html">Configuration Manager サーバー資料の採取手順 (手動)</a> の手順で、情報採取をお願いします。</p>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/os-deployment/">OS Deployment</a>
+
+      
+    </div>
+  
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/memlog/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/memlog/js/book.js"></script>
