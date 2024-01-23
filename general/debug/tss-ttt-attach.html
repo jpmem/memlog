@@ -134,25 +134,25 @@ function sidebar_toggle() {
 
 </li>
 </ol>
-<p><img src="./tss-ttt/tss-ttt00.png" alt="">  </p>
+<p><img src="./tss-ttt-attach/tss-ttt00.png" alt="">  </p>
 <h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><ol>
 <li><p>以下の URL からダウンロードした TSS.zip を採取対象の端末に複製します。<br><a target="_blank" rel="noopener" href="https://aka.ms/getTSS">https://aka.ms/getTSS</a></p>
 </li>
-<li><p>複製したファイルを端末上の任意のパスに展開します。<br>※以下は展開例です。<br><img src="./tss-ttt/tss-ttt01.png" alt="">  </p>
+<li><p>複製したファイルを端末上の任意のパスに展開します。<br>※以下は展開例です。<br><img src="./tss-ttt-attach/tss-ttt01.png" alt="">  </p>
 </li>
-<li><p>Windows PowerShell を管理者として起動します。<br><img src="./tss-ttt/tss-ttt02.png" alt="">  </p>
+<li><p>Windows PowerShell を管理者として起動します。<br><img src="./tss-ttt-attach/tss-ttt02.png" alt="">  </p>
 </li>
 <li><p>起動した PowerShell コンソールで以下のコマンドを実行し、PowerShell スクリプトを実行できるように、実行ポリシーを変更します。なお、本実行ポリシーは開いた Powershell コンソール内のみで有効となります。</p>
 </li>
 </ol>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted <span class="literal">-Scope</span> <span class="keyword">Process</span></span><br></pre></td></tr></table></figure>
 
-<p>   <img src="./tss-ttt/tss-ttt03.png" alt="">  </p>
+<p>   <img src="./tss-ttt-attach/tss-ttt03.png" alt="">  </p>
 <ol start="5">
 <li>TSS.zip を展開したフォルダーに移動します。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [TSS 展開先]</span><br></pre></td></tr></table></figure>
-<p>   <img src="./tss-ttt/tss-ttt04.png" alt="">  </p>
+<p>   <img src="./tss-ttt-attach/tss-ttt04.png" alt="">  </p>
 <ol start="6">
 <li>以下のコマンドを入力し、資料採取を準備します。</li>
 </ol>
@@ -168,18 +168,18 @@ function sidebar_toggle() {
 <ol start="7">
 <li>実行後、以下のように Reproduce the issue and press ‘Y’ key AFTER finishing the repro (with window focus here) [Y]? と聞かれます。また、別ウィンドウで、 TTTracer.exe のウィンドウが開きます。  </li>
 </ol>
-<p><img src="./tss-ttt/tss-ttt06.png" alt=""><br><img src="./tss-ttt/tss-ttt07.png" alt="">  </p>
+<p><img src="./tss-ttt-attach/tss-ttt06.png" alt=""><br><img src="./tss-ttt-attach/tss-ttt07.png" alt="">  </p>
 <ol start="8">
 <li><p>担当者に案内された事象を再現します。</p>
 </li>
 <li><p>再現したら、Reproduce the issue and press ‘Y’ key AFTER finishing the repro (with window focus here) [Y]? と聞かれている画面で [Y] を入力します。資料採取が開始されます。</p>
 </li>
 </ol>
-<p><img src="./tss-ttt/tss-ttt08.png" alt="">  </p>
+<p><img src="./tss-ttt-attach/tss-ttt08.png" alt="">  </p>
 <ol start="10">
 <li>以下の赤枠部分のように表示されれば採取完了です。実行結果に表示されているファイルを弊社までお寄せください。</li>
 </ol>
-<p><img src="./tss-ttt/tss-ttt09.png" alt="">  </p>
+<p><img src="./tss-ttt-attach/tss-ttt09.png" alt="">  </p>
 <h1 id="TSS-に関する-FAQ"><a href="#TSS-に関する-FAQ" class="headerlink" title="TSS に関する FAQ"></a>TSS に関する FAQ</h1><p>TSS に関してよく頂くご質問について、下記にまとめておりますので適宜ご参照ください。(弊社 Windows サポートチーム 資料採取案内ページへのリンクとなっております)</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://jpwinsup.github.io/mslog/faq/faq/general/">TSS に関するご質問</a></li>
