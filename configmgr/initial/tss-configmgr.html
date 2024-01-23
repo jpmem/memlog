@@ -126,11 +126,11 @@ function sidebar_toggle() {
           <div class="book-post">
   <h1 id="Configuration-Manager-および-WSUS-初期調査に必要な資料採取手順について-TSS版"><a href="#Configuration-Manager-および-WSUS-初期調査に必要な資料採取手順について-TSS版" class="headerlink" title="Configuration Manager および WSUS 初期調査に必要な資料採取手順について (TSS版)"></a>Configuration Manager および WSUS 初期調査に必要な資料採取手順について (TSS版)</h1><p>Configuration Manager (ConfigMgr) / WSUS の初期調査では TSS (Trouble Shooting Script) による資料採取をお願いさせていただいております。</p>
 <p>調査に必要なシステム情報やイベント ログ等の各種情報を、自動で採取可能なスクリプト ファイルによる情報採取をお願いします。<br> (情報採取に伴うシャットダウンや再起動は行われません)。</p>
-<p>後述の手順で  TSS.ps1 を実行し、出力された MS_DATA フォルダをアーカイブ化して弊社までお寄せくださいますようお願いいたします。</p>
+<p>後述の手順で  TSS.ps1 を実行し、出力された フォルダをアーカイブ化して弊社までお寄せくださいますようお願いいたします。</p>
 <p>なお、下記でご案内している手順 では 性能解析や ネットワーク 解析のための資料は採取しておりません。そのような解析が必要な場合は担当者より採取手順を別途ご案内しますので、ご承知置きくださいますようお願い致します。</p>
 <h2 id="ConfigMgr-クライアントがお手元に無い場合"><a href="#ConfigMgr-クライアントがお手元に無い場合" class="headerlink" title="ConfigMgr クライアントがお手元に無い場合"></a>ConfigMgr クライアントがお手元に無い場合</h2><p>ConfigMgr クライアントの情報採取の際に、エンドユーザー様がご利用されている等、お手元に クライアントが用意できない場合については、リモート から一部のログを採取する方法がございます。TSS で採取している内容ほど充実はしておりませんが、こちらで採取したログにて調査開始であることもございますので、お試し頂ければと存じます。</p>
 <p>Configuration Manager エージェント資料のリモート採取手順について<br><a href="https://jpmem.github.io/memlog/configmgr/initial/remote_ccm.html">https://jpmem.github.io/memlog/configmgr/initial/remote_ccm.html</a></p>
-<h1 id="TSS-による資料採取手順"><a href="#TSS-による資料採取手順" class="headerlink" title="TSS による資料採取手順"></a>TSS による資料採取手順</h1><h2 id="事前準備"><a href="#事前準備" class="headerlink" title="事前準備"></a>事前準備</h2><ol>
+<h1 id="TSS-による資料採取手順"><a href="#TSS-による資料採取手順" class="headerlink" title="TSS による資料採取手順"></a>TSS による資料採取手順</h1><ol>
 <li><p>以下の URL からダウンロードした TSS.zip を採取対象の端末に複製します。<br><a target="_blank" rel="noopener" href="https://aka.ms/getTSS">https://aka.ms/getTSS</a></p>
 </li>
 <li><p>複製したファイルを端末上の任意のパスに展開します。<br>※以下は展開例です。<br><img src="./tss-configmgr/tss-configmgr01.png" alt="">  </p>
@@ -154,11 +154,12 @@ function sidebar_toggle() {
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-SDP</span> SCCM <span class="literal">-noUpdate</span> </span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>使用許諾の確認が以下のように表示される場合は内容をご承諾頂いた上で [Accept] ボタンをクリックし同意頂きますようお願い致します。<br><img src="./tss-configmgr/tss-configmgr05.png" alt="">  </li>
-<li>資料は標準では C:\MS_DATA フォルダに保存されます。 保存先を変更されたい場合は、下記のように  -LogFolderPath オプションを付与ください。</li>
-</ul>
+<li><p>使用許諾の確認が以下のように表示される場合は内容をご承諾頂いた上で [Accept] ボタンをクリックし同意頂きますようお願い致します。<br><img src="./tss-configmgr/tss-configmgr05.png" alt="">  </p>
+</li>
+<li><p>資料は標準では C:\MS_DATA フォルダに保存されます。 保存先を変更されたい場合は、下記のように  -LogFolderPath オプションを付与ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-SDP</span> SCCM <span class="literal">-noUpdate</span> ーLogFolderPath D:\MS_DATAーLogFolderPath D:\MS_DATA</span><br></pre></td></tr></table></figure>
-
+</li>
+</ul>
 <ol start="7">
 <li><p>資料採取が始まりますので終了まで待ちます。<br><img src="./tss-configmgr/tss-configmgr06.png" alt="">  </p>
 </li>
@@ -178,7 +179,7 @@ function sidebar_toggle() {
 <ul>
 <li><a href="https://jpmem.github.io/memlog/wsus/initial/manually_serverlog.html">WSUS サーバー資料の採取手順 (手動)</a></li>
 </ul>
-<h1 id="TSS-に関するご質問"><a href="#TSS-に関するご質問" class="headerlink" title="TSS に関するご質問"></a>TSS に関するご質問</h1><p>TSS に関してよく頂くご質問について、下記にまとめておりますので適宜ご参照ください。</p>
+<h1 id="TSS-に関する-FAQ"><a href="#TSS-に関する-FAQ" class="headerlink" title="TSS に関する FAQ"></a>TSS に関する FAQ</h1><p>TSS に関してよく頂くご質問について、下記にまとめておりますので適宜ご参照ください。(弊社 Windows サポートチーム 資料採取案内ページへのリンクとなっております)</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://jpwinsup.github.io/mslog/faq/faq/general/">TSS に関するご質問</a></li>
 <li><a target="_blank" rel="noopener" href="https://jpwinsup.github.io/mslog/faq/faq/error/">TSS 実行時のエラーについて</a></li>
