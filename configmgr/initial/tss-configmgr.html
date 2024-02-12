@@ -128,8 +128,13 @@ function sidebar_toggle() {
 <p>調査に必要なシステム情報やイベント ログ等の各種情報を、自動で採取可能なスクリプト ファイルによる情報採取をお願いします。<br> (情報採取に伴うシャットダウンや再起動は行われません)。</p>
 <p>後述の手順で  TSS.ps1 を実行し、出力された フォルダをアーカイブ化して弊社までお寄せくださいますようお願いいたします。</p>
 <p>なお、下記でご案内している手順 では 性能解析や ネットワーク 解析のための資料は採取しておりません。そのような解析が必要な場合は担当者より採取手順を別途ご案内しますので、ご承知置きくださいますようお願い致します。</p>
-<h2 id="ConfigMgr-クライアントがお手元に無い場合"><a href="#ConfigMgr-クライアントがお手元に無い場合" class="headerlink" title="ConfigMgr クライアントがお手元に無い場合"></a>ConfigMgr クライアントがお手元に無い場合</h2><p>ConfigMgr クライアントの情報採取の際に、エンドユーザー様がご利用されている等、お手元に クライアントが用意できない場合については、リモート から一部のログを採取する方法がございます。TSS で採取している内容ほど充実はしておりませんが、こちらで採取したログにて調査開始であることもございますので、お試し頂ければと存じます。</p>
+<h2 id="ConfigMgr-クライアントがお手元に無い場合"><a href="#ConfigMgr-クライアントがお手元に無い場合" class="headerlink" title="ConfigMgr クライアントがお手元に無い場合"></a>ConfigMgr クライアントがお手元に無い場合</h2><p>ConfigMgr クライアントの情報採取の際に、エンドユーザー様がご利用されている等、お手元に クライアントが用意できない場合については、リモート から一部のログを採取する方法がございます。TSS で採取している内容ほど充実はしておりませんが、こちらで採取したログにて調査開始が可能であることもございますので、お試しいただければと存じます。</p>
 <p>Configuration Manager エージェント資料のリモート採取手順について<br><a href="https://jpmem.github.io/memlog/configmgr/initial/remote_ccm.html">https://jpmem.github.io/memlog/configmgr/initial/remote_ccm.html</a></p>
+<h2 id="TSS-による採取資料のサイズを減らしたい場合"><a href="#TSS-による採取資料のサイズを減らしたい場合" class="headerlink" title="TSS による採取資料のサイズを減らしたい場合"></a>TSS による採取資料のサイズを減らしたい場合</h2><p>TSS は ConfigMgr のログフォルダ配下のデータをそのまま複製します。採取資料サイズが大きくなる理由としては、ログフォルダ配下に過去のクラッシュダンプファイルが残留していることがほとんどでございます。クラッシュダンプとは、ConfigMgrのプロセスが何かしらの理由でクラッシュした場合に、クラッシュ理由を解析するためにそのプロセスのメモリ内容をそのままファイルに複製したものです。</p>
+<p>クラッシュダンプは</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ConfigMgrインストールフォルダ]\Logs\CrashDumps\</span><br></pre></td></tr></table></figure>
+
+<p>配下にYYYYMMDD_HHmmssssssssssss_[プロセス名]のフォルダを生成します。基本的に、フォルダ名の日付が資料採取時点より過去の場合（1週間以上）不要ですので、資料サイズの巨大化を回避したい場合は、クリンナップした後に以降の資料採取を実施頂ければと存じます。</p>
 <h1 id="TSS-による資料採取手順"><a href="#TSS-による資料採取手順" class="headerlink" title="TSS による資料採取手順"></a>TSS による資料採取手順</h1><ol>
 <li><p>以下の URL からダウンロードした TSS.zip を採取対象の端末に複製します。<br><a target="_blank" rel="noopener" href="https://aka.ms/getTSS">https://aka.ms/getTSS</a></p>
 </li>
