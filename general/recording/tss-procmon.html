@@ -125,7 +125,7 @@ function sidebar_toggle() {
         <div class="book-content">
           <div class="book-post">
   <h1 id="Process-Monitor-ツール-Procmon-による情報採取-TSS-版"><a href="#Process-Monitor-ツール-Procmon-による情報採取-TSS-版" class="headerlink" title="Process Monitor ツール (Procmon) による情報採取 (TSS 版)"></a>Process Monitor ツール (Procmon) による情報採取 (TSS 版)</h1><p>プロセスがアクセスするファイル、レジストリについての情報を記録する Process Monitor ツールによる情報採取の手順です。  ファイルシステム や レジストリ に関する エラー や リソース 競合等が発生していないか確認する際に有用です。<br>以下、TSS が内包する Process Monitor を利用する手順となります。</p>
-<h2 id="影響"><a href="#影響" class="headerlink" title="影響"></a>影響</h2><p>採取時は一時的に負荷が発生する場合があります。なお、OS 再起動の必要はありません。<br>なお、最大 1GB 強のデータを取得しますので、事前に空き容量をご確認ください。</p>
+<h2 id="影響"><a href="#影響" class="headerlink" title="影響"></a>影響</h2><p>採取時は一時的に負荷が発生する場合があります。なお、OS 再起動の必要はありません。<br>なお、最大 2GB 強のデータを取得しますので、事前に空き容量をご確認ください。</p>
 <h2 id="対象"><a href="#対象" class="headerlink" title="対象"></a>対象</h2><p>担当者よりご案内させていただきます。</p>
 <h2 id="対象の手順"><a href="#対象の手順" class="headerlink" title="対象の手順"></a>対象の手順</h2><p>担当者よりご案内させていただきます。</p>
 <h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><ol>
@@ -150,14 +150,14 @@ function sidebar_toggle() {
 <ol start="6">
 <li>以下のコマンドを入力し、資料採取を準備します。</li>
 </ol>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-Procmon</span> <span class="literal">-ProcMonRingBufferSize</span> <span class="number">1024</span> <span class="literal">-noUpdate</span> <span class="literal">-noBasicLog</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-Procmon</span> <span class="literal">-ProcMonRingBufferSize</span> <span class="number">2048</span> <span class="literal">-noUpdate</span> <span class="literal">-noBasicLog</span></span><br></pre></td></tr></table></figure>
 
 
 <ul>
 <li><p>使用許諾の確認が以下のように表示される場合は内容をご承諾頂いた上で [Accept] ボタンをクリックし同意頂きますようお願い致します。<br><img src="./tss-procmon/tss-procmon05.png" alt="">  </p>
 </li>
 <li><p>資料は標準では C:\MS_DATA フォルダに保存されます。 保存先を変更されたい場合は、下記のように  -LogFolderPath オプションを付与ください。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-Procmon</span> <span class="literal">-ProcMonRingBufferSize</span> <span class="number">1024</span> <span class="literal">-noUpdate</span> <span class="literal">-noBasicLog</span> <span class="literal">-LogFolderPath</span> D:\MS_DATA</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-Procmon</span> <span class="literal">-ProcMonRingBufferSize</span> <span class="number">2048</span> <span class="literal">-noUpdate</span> <span class="literal">-noBasicLog</span> <span class="literal">-LogFolderPath</span> D:\MS_DATA</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ol start="7">
