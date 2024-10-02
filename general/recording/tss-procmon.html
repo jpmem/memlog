@@ -132,21 +132,21 @@ function sidebar_toggle() {
 <li><p>以下の URL にアクセスし、TSS.zip をダウンロードします。<br><strong>2024年9月現在、ツールのご提供方法の変更が計画されております。下記 URL からツールをダウンロードできない場合、サポートケース担当者までご連絡ください。</strong>  </p>
 <p><a target="_blank" rel="noopener" href="https://aka.ms/getTSS">https://aka.ms/getTSS</a></p>
 </li>
-<li><p>複製したファイルを端末上の任意のパスに展開します。<br>※以下は展開例です。<br><img src="./tss-procmon/tss-procmon01.png" alt="">  </p>
+<li><p>複製したファイルを端末上の任意のパスに展開します。<br>※以下は展開例です。<br><img src="./tss-common/tss-common01.png" alt="">  </p>
 </li>
-<li><p>Windows PowerShell を管理者として起動します。<br><img src="./tss-procmon/tss-procmon02.png" alt="">  </p>
+<li><p>Windows PowerShell を管理者として起動します。<br><img src="./tss-common/tss-common02.png" alt="">  </p>
 </li>
 <li><p>起動した PowerShell コンソールで以下のコマンドを実行し、PowerShell スクリプトを実行できるように、実行ポリシーを変更します。なお、本実行ポリシーは開いた Powershell コンソール内のみで有効となります。</p>
 </li>
 </ol>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted <span class="literal">-Scope</span> <span class="keyword">Process</span></span><br></pre></td></tr></table></figure>
 
-<p>   <img src="./tss-procmon/tss-procmon03.png" alt="">  </p>
+<p>   <img src="./tss-common/tss-common03.png" alt="">  </p>
 <ol start="5">
 <li>TSS.zip を展開したフォルダーに移動します。</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [TSS 展開先]</span><br></pre></td></tr></table></figure>
-<p>   <img src="./tss-procmon/tss-procmon04.png" alt="">  </p>
+<p>   <img src="./tss-common/tss-common04.png" alt="">  </p>
 <ol start="6">
 <li>以下のコマンドを入力し、資料採取を準備します。</li>
 </ol>
@@ -154,7 +154,7 @@ function sidebar_toggle() {
 
 
 <ul>
-<li><p>使用許諾の確認が以下のように表示される場合は内容をご承諾頂いた上で [Accept] ボタンをクリックし同意頂きますようお願い致します。<br><img src="./tss-procmon/tss-procmon05.png" alt="">  </p>
+<li><p>使用許諾の確認が以下のように表示される場合は内容をご承諾頂いた上で [Accept] ボタンをクリックし同意頂きますようお願い致します。<br><img src="./tss-common/tss-common05.png" alt="">    </p>
 </li>
 <li><p>資料は標準では C:\MS_DATA フォルダに保存されます。 保存先を変更されたい場合は、下記のように  -LogFolderPath オプションを付与ください。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-Procmon</span> <span class="literal">-ProcMonRingBufferSize</span> <span class="number">2048</span> <span class="literal">-noUpdate</span> <span class="literal">-noBasicLog</span> <span class="literal">-LogFolderPath</span> D:\MS_DATA</span><br></pre></td></tr></table></figure>
