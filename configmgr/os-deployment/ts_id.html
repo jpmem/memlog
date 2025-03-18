@@ -11,7 +11,7 @@
 
     <title>
         
-          Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
+          タスク シーケンス識別情報の採取手順について - Microsoft Endpoint Manager / WSUS の資料採取に関する情報公開サイト
         
     </title>
 
@@ -123,60 +123,55 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>OS Deployment</h1>
-  
+          <div class="book-post">
+  <h1 id="タスク-シーケンス識別情報の採取手順について"><a href="#タスク-シーケンス識別情報の採取手順について" class="headerlink" title="タスク シーケンス識別情報の採取手順について"></a>タスク シーケンス識別情報の採取手順について</h1><p>調査対象のタスク シーケンスについて、下記でご案内する識別情報をご提供くださいますようお願いいたします。</p>
+<h2 id="作業端末"><a href="#作業端末" class="headerlink" title="作業端末"></a>作業端末</h2><p>Configuration Manager コンソールが動作する端末</p>
+<h2 id="採取情報"><a href="#採取情報" class="headerlink" title="採取情報"></a>採取情報</h2><ol>
+<li>タスク シーケンスの名前</li>
+<li>タスク シーケンスのパッケージ ID</li>
+<li>タスク シーケンスの展開 目的</li>
+<li>タスク シーケンスの展開 ID</li>
+</ol>
+<h2 id="採取手順"><a href="#採取手順" class="headerlink" title="採取手順"></a>採取手順</h2><p>調査対象のタスク シーケンスについて、Configuration Manager コンソールから以下の手順で識別情報を採取し、ご提供ください。</p>
+<ol>
+<li>[Configuration Manager コンソール] - [ソフトウェア ライブラリ] - [概要] - [オペレーティング システム] - [タスク シーケンス]まで遷移ください。  </li>
+<li>表示項目の列名を右クリックし、[パッケージ ID]を追加します。<br><img src="./ts_id/ts_id01.png" alt=""></li>
+<li>「パッケージ ID」が表示されている状態で、対象のタスク シーケンスを選択し、キーボードで「Ctrl + C」を押下します。<br><img src="./ts_id/ts_id02.png" alt=""></li>
+<li>メモ帳等で「Ctrl + V」を押下すると選択した行が貼り付けられます。<br><img src="./ts_id/ts_id03.png" alt=""></li>
+<li>対象のタスク シーケンスを選択した状態で画面下部の「展開」タブを選択します。</li>
+<li>表示項目の列名を右クリックし、[目的]と[展開 ID]を追加します。<br><img src="./ts_id/ts_id04.png" alt=""></li>
+<li>[目的]と[展開 ID]が表示されている状態で、対象の展開を選択し、キーボードで「Ctrl + C」を押下します。<br><img src="./ts_id/ts_id05.png" alt=""></li>
+<li>メモ帳等で「Ctrl + V」を押下すると選択した行が貼り付けられます。<br><img src="./ts_id/ts_id06.png" alt=""></li>
+<li>タスク シーケンスの名前と共に、上記で入手した[タスク シーケンスのパッケージ ID], [タスク シーケンスの展開 目的], [タスク シーケンスの展開 ID]の情報を弊社にご提供ください。</li>
+</ol>
 
-  
-    <!-- Split post by year -->
-    
-    <!-- Split post by category -->
-    
-  
-
-  
-    <div class="category">
-        <h2>OS Deployment</h2>
-        <ul class="archive-list-item">
-        
-            <li>
-              <a href="/memlog/configmgr/os-deployment/ts_id.html">
-                タスク シーケンス識別情報の採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/os-deployment/scenario_pxe.html">
-                PXE ブート問題発生時の情報採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/os-deployment/osd_smsts.html">
-                smsts.log の採取手順について
-              </a>
-            </li>
-        
-            <li>
-              <a href="/memlog/configmgr/os-deployment/osd_exportts.html">
-                タスク シーケンスのエクスポート手順について
-              </a>
-            </li>
-        
-        </ul>
-    </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/memlog/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
         <div class="book-post-info">
   
     <div class="book-post-meta">
+  
+    <div class="link">
+      <a class="category-link" href="/memlog/categories/configmgr/">ConfigMgr</a> <a class="category-link" href="/memlog/categories/configmgr/os-deployment/">OS Deployment</a>
+
+      
+    </div>
   
 </div>
   
