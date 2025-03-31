@@ -166,7 +166,19 @@ function sidebar_toggle() {
 <li>「インストール」をクリックします。  </li>
 <li>インストールが完了しましたら、「閉じる」をクリックします。</li>
 </ol>
-<h3 id="5-イベント-ログ"><a href="#5-イベント-ログ" class="headerlink" title="5. イベント ログ"></a>5. イベント ログ</h3><p>イベント ビューアーよりアプリケーション、システム、セキュリティのログを保存してください。<br>イベント ログ形式とテキスト形式での保存をお願いします。</p>
+<h3 id="5-イベント-ログ"><a href="#5-イベント-ログ" class="headerlink" title="5. イベント ログ"></a>5. イベント ログ</h3><p>以下の手順でイベント ログを採取ください。</p>
+<ol>
+<li><p>コマンド プロンプトを管理者権限で開きます。</p>
+</li>
+<li><p>カレント フォルダを[WSUS インストール フォルダ]\Tools に移動します。</p>
+</li>
+<li><p>以下のコマンドを実行します。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WsusUtil.exe Checkhealth</span><br></pre></td></tr></table></figure></li>
+<li><p>「終了しました。ソース “Windows Server Update Services” が含まれるイベントのイベント ログを確認してください。」と表示されるのを確認します。</p>
+</li>
+<li><p>イベント ビューアーよりアプリケーション、システム、セキュリティのログを保存してください。イベント ログ形式とテキスト形式での保存をお願いします。</p>
+</li>
+</ol>
 <h3 id="6-システム情報"><a href="#6-システム情報" class="headerlink" title="6. システム情報"></a>6. システム情報</h3><p>以下の手順で出力した txt ファイルの取得をお願いします。</p>
 <ol>
 <li>[ファイル名を指定して実行] より、”msinfo32” を開きます。</li>
