@@ -124,33 +124,33 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <h1 id="Procedures-for-Collecting-Logs-Required-for-the-Initial-Investigation-of-Configuration-Manager-and-WSUS-TSS-Version"><a href="#Procedures-for-Collecting-Logs-Required-for-the-Initial-Investigation-of-Configuration-Manager-and-WSUS-TSS-Version" class="headerlink" title="Procedures for Collecting Logs Required for the Initial Investigation of Configuration Manager and WSUS (TSS Version)"></a>Procedures for Collecting Logs Required for the Initial Investigation of Configuration Manager and WSUS (TSS Version)</h1><p>The following explains how to use TSS to collect the logs necessary for troubleshooting ConfigMgr and WSUS.</p>
+  <h1 id="Procedures-for-Collecting-Logs-Required-for-the-Initial-Investigation-of-Configuration-Manager-and-WSUS-TSS-Version"><a href="#Procedures-for-Collecting-Logs-Required-for-the-Initial-Investigation-of-Configuration-Manager-and-WSUS-TSS-Version" class="headerlink" title="Procedures for Collecting Logs Required for the Initial Investigation of Configuration Manager and WSUS (TSS Version)"></a>Procedures for Collecting Logs Required for the Initial Investigation of Configuration Manager and WSUS (TSS Version)</h1><p>This document explains how to use TSS to collect the logs necessary for troubleshooting Configuration Manager (ConfigMgr) and WSUS.</p>
 <h1 id="Steps-to-Run-TSS"><a href="#Steps-to-Run-TSS" class="headerlink" title="Steps to Run TSS"></a>Steps to Run TSS</h1><ol>
-<li><p>Download TSS.zip from below URL.</p>
+<li><p>Download TSS.zip from the following URL:</p>
 <p><a target="_blank" rel="noopener" href="https://aka.ms/getTSS">https://aka.ms/getTSS</a></p>
 </li>
 <li><p>Extract it to an appropriate location.</p>
 </li>
 <li><p>Launch PowerShell as an administrator.</p>
 </li>
-<li><p>Change execution policy to launch TSS.</p>
+<li><p>Change the PowerShell execution policy to allow running scripts:</p>
 </li>
 </ol>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set-ExecutionPolicy</span> Unrestricted <span class="literal">-Scope</span> <span class="keyword">Process</span></span><br></pre></td></tr></table></figure>
 <ol start="5">
-<li>Change the path to extracted location.</li>
+<li>Navigate to the folder where you extracted TSS.zip:</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd [TSS path]</span><br></pre></td></tr></table></figure>
 <ol start="6">
-<li><p>Runt bellow command to begin logs.   </p>
+<li><p>Run the following command to begin log collection:</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-CollectLog</span> MCM_Report <span class="literal">-noUpdate</span></span><br></pre></td></tr></table></figure>
 <p><img src="./tss-configmgr-eng/tss-configmgr-eng06.png" alt="">  </p>
 <ul>
-<li>When the EULA shows, please read and accept it.<br><img src="./tss-configmgr-eng/tss-configmgr-eng05.png" alt="">  </li>
-<li>As a default, the logs save to C:\MS_DATA. If you would like to change the path, please add -LogFolderPath as bellow.<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-CollectLog</span> MCM_Report <span class="literal">-noUpdate</span> <span class="literal">-LogFolderPath</span> D:\MS_DATA</span><br></pre></td></tr></table></figure></li>
+<li>When the EULA appears, please read and accept it.<br><img src="./tss-configmgr-eng/tss-configmgr-eng05.png" alt="">  </li>
+<li>By default, logs are saved to C:\MS_DATA. If you wish to change the folder, specify -LogFolderPath as shown below:<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\TSS.ps1 <span class="literal">-CollectLog</span> MCM_Report <span class="literal">-noUpdate</span> <span class="literal">-LogFolderPath</span> D:\MS_DATA</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li><p>Wait the dialog show “==&gt; Please send C:\MS_DATA\～ to our MS upload site”, it means finish the collection.<br><img src="./tss-configmgr-eng/tss-configmgr-eng07.png" alt="">  </p>
+<li><p>When you see the dialog “==&gt; Please send C:\MS_DATA\～ to our MS upload site”, log collection is complete.<br><img src="./tss-configmgr-eng/tss-configmgr-eng07.png" alt="">  </p>
 </li>
 <li><p>Upload the logs C:\MS_DATA\TSS_[hostname]_YYMMdd-HHmmss_Log-MCM_Report.log<br><img src="./tss-configmgr-eng/tss-configmgr-eng08.png" alt="">  </p>
 </li>
